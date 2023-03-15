@@ -5,6 +5,6 @@ import javax.sound.sampled.SourceDataLine;
 class Main {
     public static void main(String args[]) {
 
-        System.out.println("berkjaay");
+        System.out.println("Hello Project Try 1");
     }
 }
