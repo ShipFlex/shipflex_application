@@ -1,11 +1,18 @@
 package main.java.io.github.ShipFlex.shipflex_application;
 
+import java.util.Scanner;
+
 import javax.sound.sampled.SourceDataLine;
 
 class Main {
     public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
 
-        System.out.println("Hello Project 2nd try");
-        System.out.println("Push Test");
+        Klant k = new Klant(null, null, null, null, null, null, null);
+        Bedrijf b = new Bedrijf(null, null, null, null, null, null, null);
+
+        k.Printgegevens();
+        b.Printgegevens();
+
     }
 }
