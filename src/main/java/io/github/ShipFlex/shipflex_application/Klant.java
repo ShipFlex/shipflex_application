@@ -1,43 +1,36 @@
 package main.java.io.github.ShipFlex.shipflex_application;
 
-import java.util.Scanner;
-
-public class Klant implements Printgegevens {
+public class Klant {
     private String naam;
-    private String achternaam;
     private String adres;
-    private String postcodeString;
-    private String woonplaats;
-    private String klantNummer;
-    private String klantTel;
+    private String postcode;
+    private String plaats;
+    private String land;
+    private String emailadres;
+    private String telefoonnummer;
+    private String klantnummer;
 
-    // Constructor
-    public Klant(String naam, String achternaam, String adres, String postcodeString, String woonplaats,
-            String klantNummer, String klantTel) {
+    //Constructor
+    public Klant(String naam, String adres, String postcode, String plaats, String land, String emailadres, String telefoonnummer
+    , String klantnummer) {
         this.naam = naam;
-        this.achternaam = achternaam;
         this.adres = adres;
-        this.postcodeString = postcodeString;
-        this.woonplaats = woonplaats;
-        this.klantNummer = klantNummer;
-        this.klantTel = klantTel;
+        this.postcode = postcode;
+        this.plaats = plaats;
+        this.land = land;
+        this.emailadres = emailadres;
+        this.telefoonnummer = telefoonnummer;
+        this.klantnummer = klantnummer;
     }
 
-    // Getters & Setters
+    // getters en setters voor alle velden
+
     public String getNaam() {
         return naam;
     }
 
     public void setNaam(String naam) {
         this.naam = naam;
-    }
-
-    public String getAchternaam() {
-        return achternaam;
-    }
-
-    public void setAchternaam(String achternaam) {
-        this.achternaam = achternaam;
     }
 
     public String getAdres() {
@@ -48,72 +41,54 @@ public class Klant implements Printgegevens {
         this.adres = adres;
     }
 
-    public String getPostcodeString() {
-        return postcodeString;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPostcodeString(String postcodeString) {
-        this.postcodeString = postcodeString;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
-    public String getWoonplaats() {
-        return woonplaats;
+    public String getPlaats() {
+        return plaats;
     }
 
-    public void setWoonplaats(String woonplaats) {
-        this.woonplaats = woonplaats;
+    public void setPlaats(String plaats) {
+        this.plaats = plaats;
     }
 
-    public String getKlantNummer() {
-        return klantNummer;
+    public String getLand() {
+        return land;
     }
 
-    public void setKlantNummer(String klantNummer) {
-        this.klantNummer = klantNummer;
+    public void setLand(String land) {
+        this.land = land;
     }
 
-    public String getKlantTel() {
-        return klantTel;
+    public String getEmailadres() {
+        return emailadres;
     }
 
-    public void setKlantTel(String klantTel) {
-        this.klantTel = klantTel;
+    public void setEmailadres(String emailadres) {
+        this.emailadres = emailadres;
     }
 
-    @Override
-    public void Printgegevens() {
-        Scanner input = new Scanner(System.in);
+    public String getTelefoonnummer() {
+        return telefoonnummer;
+    }
 
-        // Vragenlijst
-        System.out.println("~~Invulformulier Klantgegevens ~~\n");
-        System.out.print("Voer de naam van de klant in: ... ");
-        String naam = input.nextLine();
+    public void setTelefoonnummer(String telefoonnummer) {
+        this.telefoonnummer = telefoonnummer;
+    }
 
-        System.out.print("Voer de achternaam van de klant in: ... ");
-        String achternaam = input.nextLine();
+    public String getKlantnummer() {
+        return klantnummer;
+    }
 
-        System.out.print("Voer het adres (Straatnaam + Huisnummer) van de klant in: ...");
-        String adres = input.nextLine();
-
-        System.out.print("Voer de postcode van de klant in: ... ");
-        String postcodeString = input.nextLine();
-
-        System.out.print("Voer de woonplaats van de klant in: ... ");
-        String woonplaats = input.nextLine();
-
-        System.out.print("Voer de klantnummer (#.....) van de klant in: ... ");
-        String klantNummer = input.nextLine();
-
-        System.out.print("Voer het telefoonnummer (+316...) van de klant in: ... ");
-        String klantTel = input.nextLine();
-        System.out.println("");
-
-        // Print klantgegevens
-        System.out.println("~~ Klantgegevens ~~\n" +
-                naam + " " + achternaam + "\n" + adres + " " + postcodeString + "\n" + woonplaats + "\n" + klantNummer
-                + "\n" + klantTel);
-
-        // Close input stream
-        input.close();
+    public void setKlantnummer(String klantnummer) {
+        this.klantnummer = klantnummer;
     }
 }
+
+
+
