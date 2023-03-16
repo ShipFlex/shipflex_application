@@ -6,5 +6,6 @@ class Main {
     public static void main(String args[]) {
 
         System.out.println("Hello Project 2nd try");
+        System.out.println("Push Test");
     }
 }
