@@ -6,14 +6,25 @@ public class KlantInvoer {
     public Klant getKlantGegevens() {
         try (Scanner input = new Scanner(System.in)) {
             {
-                      
-            // Startvraag
-            System.out.println("Welk type klant heeft u?");
-            System.out.println("1. Particulier");
-            System.out.println("2. Bedrijf");
+            int keuze;
+            while (true) {
+                System.out.println("Welk type klant heeft u?");
+                System.out.println("1. Particulier");
+                System.out.println("2. Bedrijf");
 
-            int keuze = input.nextInt();
-            input.nextLine(); // consumeer de rest van de lijn na de int
+                try {
+                    keuze = Integer.parseInt(input.nextLine());
+                    if (keuze == 1 || keuze == 2) {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    // hij negeert dit, de loop gaat door
+                }
+
+                // Op dit punt betekent het dat de ingevulde keuze ongeldig is
+                System.out.println("Ongeldige keuze, kies 1 of 2.");
+            }
+
 
             // Begin vragenlijst
             System.out.println("~~Invulformulier Klantgegevens ~~\n");
