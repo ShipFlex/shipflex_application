@@ -1,5 +1,3 @@
-package main.java.io.github.ShipFlex.shipflex_application;
-
 import java.util.Scanner;
 
 public class KlantInvoer {

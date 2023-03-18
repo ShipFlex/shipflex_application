@@ -1,5 +1,3 @@
-package main.java.io.github.ShipFlex.shipflex_application;
-
 public class Particulier extends Klant {
     
     public Particulier(String naam, String adres, String postcode, String plaats, 

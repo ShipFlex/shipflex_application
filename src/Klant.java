@@ -1,5 +1,3 @@
-package main.java.io.github.ShipFlex.shipflex_application;
-
 public class Klant {
     private String naam;
     private String adres;

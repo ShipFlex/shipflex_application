@@ -1,5 +1,3 @@
-package main.java.io.github.ShipFlex.shipflex_application;
-
 public class ExtraOpties {
     private String airco;
     private String navigatie;
