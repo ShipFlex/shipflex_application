@@ -4,69 +4,185 @@ import java.util.Scanner;
 
 public class KlantInvoer {
     private Scanner input;
-    public KlantInvoer(){
+
+    public KlantInvoer() {
         this.input = new Scanner(System.in);
     }
-    public Schip getSchipGegevens() {
-        System.out.println("Kies Scheepstype: \n");
-        System.out.println("""
-                1-Motorboot 
-                2-Zeilboot
-                3-Catamaran
-                4-Jacht
-                                """);
-        int scheepstypeChoice = Integer.parseInt(input.nextLine());
-        String scheepstype;
 
-        switch (scheepstypeChoice) {
-            case 1:
-                scheepstype = "Motorboot";
-                break;
-            case 2:
-                scheepstype = "Zeilboot";
-                break;
-            case 3:
-                scheepstype = "Catamaran";
-                break;
-            case 4:
-                scheepstype = "Jacht";
-                break;
-            default:
-                throw new IllegalArgumentException("Invlaide keuze: " + scheepstypeChoice);
+    public Schip getSchipGegevens() {
+        String scheepstype;
+        while (true) {
+            System.out.println("Kies Scheepstype:");
+            System.out.println("""
+                    ┌─────────────┐┌─────────────┐
+                    │ 1-Motorboot ││ 2-Zeilboot  │
+                    ├─────────────┤├─────────────┤
+                    │ 3-Catamaran ││  4-Jacht    │
+                    └─────────────┘└─────────────┘  
+                              """);
+            int scheepstypeChoice;
+            try {
+                scheepstypeChoice = Integer.parseInt(input.nextLine());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Ongeldige keze, kies 1,2,3,4");
+                continue;
+            }
+            switch (scheepstypeChoice) {
+                case 1:
+                    scheepstype = "Motorboot";
+                    break;
+                case 2:
+                    scheepstype = "Zeilboot";
+                    break;
+                case 3:
+                    scheepstype = "Catamaran";
+                    break;
+                case 4:
+                    scheepstype = "Jacht";
+                    break;
+                default:
+                    System.out.println("Ongeldige keuze, kies 1,2,3,4");
+                    continue;
+            }
+            break;
         }
 
         return new Schip(scheepstype);
     }
 
-    public EOpties getEOpties(){
-        System.out.println("Essentiele Opties: ");
-        System.out.println("""
-                Romp:
-                1-Alluminium
-                2-Staal
-                3-Composiet
-                4-Hout        
-                  """);
-        int rompchoice = Integer.parseInt(input.nextLine());
-        String romptype;
-        switch (rompchoice){
-            case 1:
-                romptype="Alluminium";
-                break;
-            case 2:
-                romptype = "Staal";
-                break;
-            case 3:
-                romptype = "Composiet";
-                break;
-            case 4:
-                romptype = "Hout";
-                break;
-            default:
-                throw new IllegalArgumentException("Kies valide type " + rompchoice);
-        }
-        return new EOpties(romptype);
+    public EOpties getEOpties() {
+        String romptype = getRompType();
+        String stuurinrichtingtype = getStuurinrichting();
+        String motortype = getMotorType();
+        return new EOpties(romptype, stuurinrichtingtype, motortype);
     }
+
+    public String getRompType() {
+        String romptype;
+        while (true) {
+            System.out.println("Kies Romp:");
+            System.out.println("""                    
+                    ┌─────────────┐┌─────────────┐
+                    │ 1-Aluminium ││   2-Staal   │
+                    ├─────────────┤├─────────────┤
+                    │ 3-Composiet ││   4-Hout    │
+                    └─────────────┘└─────────────┘  
+                      """);
+            int rompchoice;
+            try {
+                rompchoice = Integer.parseInt(input.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                continue;
+            }
+            switch (rompchoice) {
+                case 1:
+                    romptype = "Alluminium";
+                    break;
+                case 2:
+                    romptype = "Staal";
+                    break;
+                case 3:
+                    romptype = "Composiet";
+                    break;
+                case 4:
+                    romptype = "Hout";
+                    break;
+                default:
+                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    continue;
+            }
+            break;
+        }
+        return romptype;
+    }
+
+    public String getStuurinrichting() {
+        String stuurinrichting;
+        while (true) {
+            System.out.println("Kies Stuur:");
+            System.out.println("""                    
+                    ┌─────────────┐┌─────────────┐
+                    │      1      ││      2      │   
+                    │ Hydraulisch ││  Elektrisch │
+                    ├─────────────┤├─────────────┤
+                    │      3      ││      4      │ 
+                    │  Mechanisch ││   Elektro   │
+                    │             ││ Hydraulisch │   
+                    └─────────────┘└─────────────┘  
+                      """);
+            int stchoice;
+            try {
+                stchoice = Integer.parseInt(input.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                continue;
+            }
+            switch (stchoice) {
+                case 1:
+                    stuurinrichting = "Hydraulisch";
+                    break;
+                case 2:
+                    stuurinrichting = "Elektrisch";
+                    break;
+                case 3:
+                    stuurinrichting = "Mechanisch";
+                    break;
+                case 4:
+                    stuurinrichting = "Elektro Hydraulisch";
+                    break;
+                default:
+                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    continue;
+            }
+            break;
+        }
+        return stuurinrichting;
+    }
+
+    public String getMotorType() {
+        String motortype;
+        while (true) {
+            System.out.println("Kies Motortype:");
+            System.out.println("""                    
+                    ┌─────────────┐┌─────────────┐
+                    │    Diesel   ││    Diesel   │   
+                    │     40pk    ││     60pk    │
+                    ├─────────────┤├─────────────┤
+                    │  Elektrisch ││  Elektrisch │    
+                    │     20kW    ││     40kW    │
+                    └─────────────┘└─────────────┘  
+                      """);
+            int motorchoice;
+            try {
+                motorchoice = Integer.parseInt(input.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                continue;
+            }
+            switch (motorchoice) {
+                case 1:
+                    motortype = "Diesel 40pk";
+                    break;
+                case 2:
+                    motortype = "Diesel 60pk";
+                    break;
+                case 3:
+                    motortype = "Elektrisch  20kW";
+                    break;
+                case 4:
+                    motortype = "Elektrisch 40kW";
+                    break;
+                default:
+                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    continue;
+            }
+            break;
+        }
+        return motortype;
+    }
+
 
 
     public Klant getKlantGegevens() {

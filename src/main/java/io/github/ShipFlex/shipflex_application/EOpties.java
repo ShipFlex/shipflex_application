@@ -1,17 +1,34 @@
 package main.java.io.github.ShipFlex.shipflex_application;
 
 public class EOpties {
-    public String opties;
-
-    public EOpties(String opties){
-        this.opties=opties;
+    private String romp;
+    private String stuurinrichting;
+    private String motor;
+    public EOpties(String romp, String stuurinrichting, String motor){
+        this.romp = romp;
+        this.stuurinrichting = stuurinrichting;
+        this.motor = motor;
 
     }
-    public String getOpties(){
-        return opties;
+    public String getRomp(){
+        return romp;
 
     }
-    public void setOpties(String opties){
-        this.opties=opties;
+    public void setRomp(String romp){
+        this.romp = romp;
+    }
+
+    public String getStuurinrichting() {
+        return stuurinrichting;
+    }
+    public void setStuurinrichting(String stuurinrichting){
+        this.stuurinrichting = stuurinrichting;
+    }
+    public String getMotor(){
+        return motor;
+
+    }
+    public void setMotor(String motor){
+        this.motor = motor;
     }
 }

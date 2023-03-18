@@ -10,12 +10,12 @@ public class Offerte {
     private Klant klant;
     private Schip schip;
 
-    private EOpties romp;
+    private EOpties eOpties;
 
-    public Offerte(Klant klant,Schip schip,EOpties romp) {
+    public Offerte(Klant klant,Schip schip,EOpties eOpties) {
         this.klant = klant;
         this.schip = schip;
-        this.romp = romp;
+        this.eOpties = eOpties;
     }
 
     // methode die de uiteindelijk offerte print
@@ -43,10 +43,12 @@ public class Offerte {
             Particulier particulier = (Particulier) klant;
             System.out.println(particulier.getKlantnummer());
         }
-        System.out.println("\n" + "-Scheeptype-");
+        System.out.println("\n" + "-Scheepstype-");
         System.out.println(schip.getModel()+"\n");
         System.out.println("\n "+ "-Essentiele Opties-");
-        System.out.println(romp.getOpties()+"\n");
+        System.out.println("Romp            : " + eOpties.getRomp()+"\n");
+        System.out.println("Motor           : " + eOpties.getMotor()+"\n");
+        System.out.println("Stuurinrichting : " + eOpties.getStuurinrichting()+"\n");
     }
 
     public void printOfferteToFile(String filename) throws IOException {
