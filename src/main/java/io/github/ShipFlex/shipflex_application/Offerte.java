@@ -48,13 +48,13 @@ public class Offerte {
         System.out.println("-Scheepstype-");
         System.out.println(schip.getModel()+"\n");
         System.out.println("-Essentiele Opties-");
-        System.out.println("Romp            : " + eOpties.getRomp()+"\n");
-        System.out.println("Motor           : " + eOpties.getMotor()+"\n");
-        System.out.println("Stuurinrichting : " + eOpties.getStuurinrichting()+"\n");
+        System.out.println("Romp            : " + eOpties.getRomp());
+        System.out.println("Motor           : " + eOpties.getMotor());
+        System.out.println("Stuurinrichting : " + eOpties.getStuurinrichting());
         System.out.println("-Extra Opties-");
         System.out.println("Airco       :" + extraOpties.getAirco());
         System.out.println("Navigatie   :" + extraOpties.getNavigatie());
-        System.out.println("Zonnepanelen:" + extraOpties.getZonnepanel());
+        System.out.println("Zonnepanel  :" + extraOpties.getZonnepanel());
     }
 
     public void printOfferteToFile(String filename) throws IOException {
