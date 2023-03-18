@@ -8,11 +8,16 @@ import java.util.List;
 
 public class Offerte {
     private Klant klant;
+    private Schip schip;
 
-    public Offerte(Klant klant) {
+    private EOpties romp;
+
+    public Offerte(Klant klant,Schip schip,EOpties romp) {
         this.klant = klant;
+        this.schip = schip;
+        this.romp = romp;
     }
-    
+
     // methode die de uiteindelijk offerte print
     public void printOfferte() {
         System.out.println("\n" + "---. Bedrijfsgegevens .---");
@@ -27,8 +32,9 @@ public class Offerte {
             klant.getPlaats()+ "\n" +
             klant.getLand()+ "\n" +
             klant.getEmailadres()+ "\n" +
-            klant.getTelefoonnummer() 
+            klant.getTelefoonnummer()
         );
+
 
         if (klant instanceof Bedrijf) {
             Bedrijf bedrijf = (Bedrijf) klant;
@@ -37,6 +43,10 @@ public class Offerte {
             Particulier particulier = (Particulier) klant;
             System.out.println(particulier.getKlantnummer());
         }
+        System.out.println("\n" + "-Scheeptype-");
+        System.out.println(schip.getModel()+"\n");
+        System.out.println("\n "+ "-Essentiele Opties-");
+        System.out.println(romp.getOpties()+"\n");
     }
 
     public void printOfferteToFile(String filename) throws IOException {

@@ -6,7 +6,9 @@ class Main {
     public static void main(String args[]) throws IOException {
 
     Klant klant = new KlantInvoer().getKlantGegevens();
-    Offerte offerte = new Offerte(klant);
+    Schip schip = new KlantInvoer().getSchipGegevens();
+    EOpties romp= new KlantInvoer().getEOpties();
+    Offerte offerte = new Offerte(klant,schip,romp);
     offerte.printOfferte();
     offerte.printOfferteToFile("B:/Java/shipflex/output_offerte.txt");
     }
