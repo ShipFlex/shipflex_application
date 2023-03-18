@@ -11,11 +11,13 @@ public class Offerte {
     private Schip schip;
 
     private EOpties eOpties;
+    private ExtraOpties extraOpties;
 
-    public Offerte(Klant klant,Schip schip,EOpties eOpties) {
+    public Offerte(Klant klant,Schip schip,EOpties eOpties,ExtraOpties extraOpties) {
         this.klant = klant;
         this.schip = schip;
         this.eOpties = eOpties;
+        this.extraOpties = extraOpties;
     }
 
     // methode die de uiteindelijk offerte print
@@ -43,12 +45,16 @@ public class Offerte {
             Particulier particulier = (Particulier) klant;
             System.out.println(particulier.getKlantnummer());
         }
-        System.out.println("\n" + "-Scheepstype-");
+        System.out.println("-Scheepstype-");
         System.out.println(schip.getModel()+"\n");
-        System.out.println("\n "+ "-Essentiele Opties-");
+        System.out.println("-Essentiele Opties-");
         System.out.println("Romp            : " + eOpties.getRomp()+"\n");
         System.out.println("Motor           : " + eOpties.getMotor()+"\n");
         System.out.println("Stuurinrichting : " + eOpties.getStuurinrichting()+"\n");
+        System.out.println("-Extra Opties-");
+        System.out.println("Airco       :" + extraOpties.getAirco());
+        System.out.println("Navigatie   :" + extraOpties.getNavigatie());
+        System.out.println("Zonnepanelen:" + extraOpties.getZonnepanel());
     }
 
     public void printOfferteToFile(String filename) throws IOException {

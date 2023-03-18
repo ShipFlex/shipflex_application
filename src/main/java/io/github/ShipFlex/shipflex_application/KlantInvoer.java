@@ -181,8 +181,77 @@ public class KlantInvoer {
             break;
         }
         return motortype;
-    }
 
+
+
+    }
+        public ExtraOpties getExtraOpties(){
+            String airco = getAircoKlant();
+            String navigatie = getNavigatieKlant();
+            String zonnepanel = getZonnepanelKlant();
+            return new ExtraOpties(airco, navigatie, zonnepanel);
+        }
+
+        public String getAircoKlant(){
+            String keuzeAirco;
+            while(true){
+                System.out.println("Wilt u Airco? j/n");
+                keuzeAirco = input.nextLine().toUpperCase();
+                if(keuzeAirco.equals("J")){
+                    String a = "Airco ✓ ";
+                    return a;
+
+                }
+                else if(keuzeAirco.equals("N")){
+                    String b = "Geen Airco X ";
+                    return b;
+                }
+                else{
+                    System.out.println("Druk op j of n");
+                }
+
+            }
+        }
+
+        public String getNavigatieKlant(){
+        String keuzeNavigatie;
+            while(true){
+                System.out.println("Wilt u Navigatie? j/n");
+                keuzeNavigatie = input.nextLine().toUpperCase();
+                if(keuzeNavigatie.equals("J")){
+                    String a = "Navigatie ✓ ";
+                    return a;
+                }
+                else if (keuzeNavigatie.equals("N")){
+                    String b =  "Geen Navigatie X ";
+                    return b;
+
+                }
+                else{
+                    System.out.println("Druk op j of n");
+                }
+            }
+        }
+        public String getZonnepanelKlant(){
+        String keuzeZonnepanel;
+            while (true){
+                System.out.println("Wilt u Zonnepanelen? j/n");
+                keuzeZonnepanel = input.nextLine().toUpperCase();
+                if(keuzeZonnepanel.equals("J")){
+                    String a = "Zonnepanelen ✓ ";
+                    return a;
+
+                }
+                else if(keuzeZonnepanel.equals("N")){
+                    String b = "Geen Zonnepanel X ";
+                    return b;
+
+                }
+                else{
+                    System.out.println("Druk op j of n");
+                }
+            }
+        }
 
 
     public Klant getKlantGegevens() {
