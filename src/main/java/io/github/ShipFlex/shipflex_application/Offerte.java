@@ -69,6 +69,12 @@ public class Offerte {
             variables.add(klant.getLand());
             variables.add(klant.getEmailadres());
             variables.add(klant.getTelefoonnummer());
+            variables.add(eOpties.getRomp());
+            variables.add(eOpties.getMotor());
+            variables.add(eOpties.getStuurinrichting());
+            variables.add(extraOpties.getAirco());
+            variables.add(extraOpties.getNavigatie());
+            variables.add(extraOpties.getZonnepanel());
 
             // Voegt het kvkNummer of klantnummer toe aan de List gebasseerd op het type klant
             if (klant instanceof Bedrijf) {
