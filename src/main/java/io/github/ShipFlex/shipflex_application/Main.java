@@ -4,7 +4,7 @@ import java.io.IOException;
 
 class Main {
     public static void main(String args[]) throws IOException {
-        String outputFile = "/Users/saksagan86/Desktop/shipflex_application /output_offerte.txt";
+        String outputFile = "B:/Java/shipflex_application/output_offerte.txt";
         KlantInvoer klantInvoer = new KlantInvoer();
         Klant klant =  klantInvoer.getKlantGegevens();
         Schip schip =   klantInvoer.getSchipGegevens();
