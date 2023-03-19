@@ -25,7 +25,7 @@ public class KlantInvoer {
                 scheepstypeChoice = Integer.parseInt(input.nextLine());
 
             } catch (NumberFormatException e) {
-                System.out.println("Ongeldige keze, kies 1,2,3,4");
+                System.out.println("Ongeldige keze, kies 1,2,3 of 4");
                 continue;
             }
             switch (scheepstypeChoice) {
@@ -42,7 +42,7 @@ public class KlantInvoer {
                     scheepstype = "Jacht";
                     break;
                 default:
-                    System.out.println("Ongeldige keuze, kies 1,2,3,4");
+                    System.out.println("Ongeldige keuze, kies 1,2,3 of 4");
                     continue;
             }
             break;
@@ -73,7 +73,7 @@ public class KlantInvoer {
             try {
                 rompchoice = Integer.parseInt(input.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                 continue;
             }
             switch (rompchoice) {
@@ -90,7 +90,7 @@ public class KlantInvoer {
                     romptype = "Hout";
                     break;
                 default:
-                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                     continue;
             }
             break;
@@ -116,7 +116,7 @@ public class KlantInvoer {
             try {
                 stchoice = Integer.parseInt(input.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                 continue;
             }
             switch (stchoice) {
@@ -133,7 +133,7 @@ public class KlantInvoer {
                     stuurinrichting = "Elektro Hydraulisch";
                     break;
                 default:
-                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                     continue;
             }
             break;
@@ -158,7 +158,7 @@ public class KlantInvoer {
             try {
                 motorchoice = Integer.parseInt(input.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Ongeldige keuze kies 1,2,3,4");
+                System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                 continue;
             }
             switch (motorchoice) {
@@ -175,7 +175,7 @@ public class KlantInvoer {
                     motortype = "Elektrisch 40kW";
                     break;
                 default:
-                    System.out.println("Ongeldige keuze kies 1,2,3,4");
+                    System.out.println("Ongeldige keuze kies 1,2,3 of 4");
                     continue;
             }
             break;
