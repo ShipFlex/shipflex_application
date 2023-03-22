@@ -1,18 +1,30 @@
+// Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
+// Imports
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 class Main {
     public static void main(String args[]) throws IOException {
         String outputFile = "B:/Java/shipflex_application/output_offerte.txt";
         KlantInvoer klantInvoer = new KlantInvoer();
         Klant klant =  klantInvoer.getKlantGegevens();
-        Schip schip =   klantInvoer.getSchipGegevens();
-        EOpties eOpties = klantInvoer.getEOpties();
+
+        OptiesInvoer oi = new OptiesInvoer();
+        
+        Opties op = oi.getOpties();
+        
+        oi.displayOpties(op);
+        oi.getGeselecteerdeOpties(op);
+
         System.out.println("");
-        ExtraOpties extraOpties = klantInvoer.getExtraOpties();
-        Offerte offerte = new Offerte(klant,schip,eOpties,extraOpties);
+        Offerte offerte = new Offerte(klant);
         offerte.printOfferte();
-        offerte.printOfferteToFile(outputFile);
+
+    
+        // offerte.printOfferteToFile(outputFile);
     }
 }
