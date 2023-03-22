@@ -1,5 +1,7 @@
+// Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
+// Imports
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,16 +10,12 @@ import java.util.List;
 
 public class Offerte {
     private Klant klant;
-    private Schip schip;
+    // private Opties opties;
 
-    private EOpties eOpties;
-    private ExtraOpties extraOpties;
-
-    public Offerte(Klant klant,Schip schip,EOpties eOpties,ExtraOpties extraOpties) {
+    // Constructor
+    public Offerte(Klant klant) {
         this.klant = klant;
-        this.schip = schip;
-        this.eOpties = eOpties;
-        this.extraOpties = extraOpties;
+
     }
 
     // methode die de uiteindelijk offerte print
@@ -45,16 +43,6 @@ public class Offerte {
             Particulier particulier = (Particulier) klant;
             System.out.println(particulier.getKlantnummer());
         }
-        System.out.println("-Scheepstype-");
-        System.out.println(schip.getModel()+"\n");
-        System.out.println("-Essentiele Opties-");
-        System.out.println("Romp            : " + eOpties.getRomp());
-        System.out.println("Motor           : " + eOpties.getMotor());
-        System.out.println("Stuurinrichting : " + eOpties.getStuurinrichting());
-        System.out.println("-Extra Opties-");
-        System.out.println("Airco       :" + extraOpties.getAirco());
-        System.out.println("Navigatie   :" + extraOpties.getNavigatie());
-        System.out.println("Zonnepanel  :" + extraOpties.getZonnepanel());
     }
 
     public void printOfferteToFile(String filename) throws IOException {
@@ -90,6 +78,7 @@ public class Offerte {
                 writer.write(variable + "\n");
             }
 
+            writer.flush();
             writer.close();
 
         }

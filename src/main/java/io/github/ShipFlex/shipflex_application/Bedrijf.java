@@ -1,3 +1,4 @@
+// Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
 public class Bedrijf extends Klant{
