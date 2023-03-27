@@ -10,12 +10,17 @@ import java.util.List;
 
 public class Offerte {
     private Klant klant;
-    // private Opties opties;
+    private List<Opties> gekozenOpties;
 
     // Constructor
     public Offerte(Klant klant) {
         this.klant = klant;
+        this.gekozenOpties = new ArrayList<>();
 
+    }
+
+    public void addOptie(Opties optie) {
+        this.gekozenOpties.add(optie);
     }
 
     // methode die de uiteindelijk offerte print

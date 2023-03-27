@@ -110,17 +110,4 @@ public class OptiesInvoer {
     
         return geselecteerdeOpties;
     }
-
-    // public void printReceipt(List<Opties> gekozenOpties) {
-    //     double totaalPrijs = 0;
-    //     System.out.println("=============================");
-    //     System.out.println("            Bon          ");
-    //     System.out.println("=============================");
-    //     for (Opties optie : gekozenOpties) {
-    //         System.out.printf("%-20s € %.2f%n", optie.getNaam(), optie.getPrijs());
-    //         totaalPrijs += optie.getPrijs();
-    //     }
-    //     System.out.println("=============================");
-    //     System.out.printf("%-20s € %.2f%n", "Totaal", totaalPrijs);
-    // }
 }
