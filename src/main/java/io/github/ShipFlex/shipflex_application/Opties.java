@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public class Opties {
     private String naam;
     private double prijs;
@@ -41,7 +40,6 @@ public class Opties {
         this.prijs = prijs;
     }
 
-    
     public Map<String, List<Opties>> getEssentieleOpties() {
         return this.essentieleOpties;
     }
@@ -51,7 +49,7 @@ public class Opties {
     }
 
     // Methode voor het toevoegen van Essentiële Opties
-    public void addEssentieleOpties (String categorie, String naam, double prijs) {
+    public void addEssentieleOpties(String categorie, String naam, double prijs) {
         Opties optie = new Opties(naam, prijs);
 
         if (!this.essentieleOpties.containsKey(categorie)) {
@@ -61,7 +59,7 @@ public class Opties {
     }
 
     // Methode voor het toevoegen van Extra Opties
-    public void addExtraOpties (String categorie, String naam, double prijs) {
+    public void addExtraOpties(String categorie, String naam, double prijs) {
         Opties optie = new Opties(naam, prijs);
 
         if (!this.extraOpties.containsKey(categorie)) {
@@ -70,54 +68,53 @@ public class Opties {
         this.extraOpties.get(categorie).add(optie);
     }
 
-    // Methode voor het verzamelen van de gekozen opties.
-    public Opties kiesOptie (String prompt, Map<String, List<Opties>> opties) {
+    // Methode voor het verzamelen van de gekozen opties
+    public Opties kiesOptie(String prompt, Map<String, List<Opties>> opties) {
         Scanner s = new Scanner(System.in);
-            Opties gekozenOptie = null;
+        Opties gekozenOptie = null;
 
-            while (gekozenOptie == null) {
-                System.out.println(prompt);
-                String input = s.nextLine();
+        while (gekozenOptie == null) {
+            System.out.println(prompt);
+            String input = s.nextLine();
 
-                for (List<Opties> optieList : opties.values()) {
-                    for (Opties optie: optieList)  {
-                        if (optie.getNaam().equalsIgnoreCase(input)) {
-                            gekozenOptie = optie;
-                            System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
-                            String antwoord = s.nextLine();
+            for (List<Opties> optieList : opties.values()) {
+                for (Opties optie : optieList) {
+                    if (optie.getNaam().equalsIgnoreCase(input)) {
+                        gekozenOptie = optie;
+                        System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
+                        String antwoord = s.nextLine();
 
-                            if (antwoord.equalsIgnoreCase("ja")) {
-                                double korting = 0.0;
-                                boolean validKorting = false;
-                                while (!validKorting) {
-                                    System.out.print("Aantal procent korting voor deze optie is:");
-                                    String kortingInput = s.nextLine();
+                        if (antwoord.equalsIgnoreCase("ja")) {
+                            double korting = 0.0;
+                            boolean validKorting = false;
+                            while (!validKorting) {
+                                System.out.print("Aantal procent korting voor deze optie is:");
+                                String kortingInput = s.nextLine();
 
-                                    try {
-                                        korting = Double.parseDouble(kortingInput);
-                                        
-                                        if (korting < 0 || korting > 100) {
-                                            System.out.println("Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
+                                try {
+                                    korting = Double.parseDouble(kortingInput);
 
-                                        } else {
-                                            validKorting = true;
-                                        }
-                                        } catch (NumberFormatException e) {
-                                            System.out.println("Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
-                                        }
+                                    if (korting < 0 || korting > 100) {
+                                        System.out.println(
+                                                "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
+
+                                    } else {
+                                        validKorting = true;
                                     }
+                                } catch (NumberFormatException e) {
+                                    System.out.println(
+                                            "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
                                 }
-                                break;
                             }
                         }
-                        }
-                                                if (gekozenOptie == null) {
-                            System.out.println("Ongeldige keuze. Probeer het opnieuw");
+                        break;
                     }
                 }
-                return gekozenOptie;
+            }
+            if (gekozenOptie == null) {
+                System.out.println("Ongeldige keuze. Probeer het opnieuw");
             }
         }
-
-    
-
+        return gekozenOptie;
+    }
+}
