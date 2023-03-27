@@ -13,7 +13,6 @@ public class Opties {
     private double prijs;
     private Map<String, List<Opties>> essentieleOpties;
     private Map<String, List<Opties>> extraOpties;
-    // private Map<String, Double> korting;
 
     // Constructor
     public Opties(String naam, double prijs) {
@@ -93,6 +92,7 @@ public class Opties {
 
                                 try {
                                     korting = Double.parseDouble(kortingInput);
+                                    VoegKortingToe(gekozenOptie, korting);
 
                                     if (korting < 0 || korting > 100) {
                                         System.out.println(
@@ -116,5 +116,15 @@ public class Opties {
             }
         }
         return gekozenOptie;
+    }
+    public void VoegKortingToe(Opties optie, double korting){
+
+        if (korting > 0) {
+            System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
+            optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
+            System.out.printf( "De nieuwe prijs van " + optie.getNaam() +  " is " + "$" + optie.getPrijs()
+            );
+
+        }
     }
 }
