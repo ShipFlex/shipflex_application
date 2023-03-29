@@ -1,22 +1,27 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
-import java.util.ArrayList;
 // Imports
-import java.util.HashMap;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
+// JSON.Simple Imports
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class OptiesInvoer {
-    private Scanner scanner;
-    private Map<String, Map<String, Double>> optiesMap;
     private List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
 
     // Constructor
     public OptiesInvoer() {
-        scanner = new Scanner(System.in);
     }
 
     public Opties getOpties() {
@@ -26,59 +31,52 @@ public class OptiesInvoer {
         return opties;
     }
 
-    /*
-     * Toevoegen Essentiële opties
-     * ---------------------
-     * Dit kan je handmatig aanpassen door:
-     * boot.addExtraOpties(<categorie> , <naam> , <prijs>);
-     */
-
+    // Functie om de essentiële opties uit een JSON file (database) uit te lezen en
+    // toe te voegen aan een object van het type Opties.
     public void addEssentieleOpties(Opties opties) {
-        opties.addEssentieleOpties("Scheepstype", "Motorboot", 10000);
-        opties.addEssentieleOpties("Scheepstype", "Zeilboot", 10000);
-        opties.addEssentieleOpties("Scheepstype", "Catarman", 10000);
-        opties.addEssentieleOpties("Scheepstype", "Jacht", 10000);
-
-        opties.addEssentieleOpties("Romp", "Aluminium", 20000);
-        opties.addEssentieleOpties("Romp", "Staal", 20000);
-        opties.addEssentieleOpties("Romp", "Composiet", 20000);
-        opties.addEssentieleOpties("Romp", "Hout", 20000);
-
-        opties.addEssentieleOpties("Stuurinrichting", "Hydraulisch", 30000);
-        opties.addEssentieleOpties("Stuurinrichting", "Mechanisch", 30000);
-        opties.addEssentieleOpties("Stuurinrichting", "Elektrisch", 30000);
-        opties.addEssentieleOpties("Stuurinrichting", "Elektrisch Hydraulisch", 30000);
-
-        opties.addEssentieleOpties("Motortype", "Diesel", 40000);
-        opties.addEssentieleOpties("Motortype", "Benzine", 40000);
-        opties.addEssentieleOpties("Motortype", "Elektrisch", 40000);
+        JSONParser parser = new JSONParser();
+        try (FileReader reader = new FileReader("opties.json")) {
+            JSONObject obj = (JSONObject) parser.parse(reader);
+            JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
+            for (Object o : essentieleOpties) {
+                JSONObject optie = (JSONObject) o;
+                String categorie = (String) optie.get("categorie");
+                String naam = (String) optie.get("naam");
+                Number prijsObj = (Number) optie.get("prijs");
+                double prijs = prijsObj.doubleValue();
+                opties.addEssentieleOpties(categorie, naam, prijs);
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    /*
-     * Toevoegen Extra opties
-     * ---------------------
-     * Dit kan je handmatig aanpassen door:
-     * boot.addExtraOpties(<categorie> , <naam> , <prijs>);
-     */
-
+    // Functie om de extra opties uit een JSON file (database) uit te lezen en toe
+    // te voegen aan een object van het type Opties.
     public void addExtraOpties(Opties opties) {
-        opties.addExtraOpties("Stoelen", "Lederen bekleding", 1500.0);
-        opties.addExtraOpties("Stoelen", "Verwarmde stoelen", 750.0);
-        opties.addExtraOpties("Navigatie", "GPS", 500.0);
-        opties.addExtraOpties("Navigatie", "Kaartupdates", 250.0);
+        JSONParser parser = new JSONParser();
+        try (FileReader reader = new FileReader("opties.json")) {
+            JSONObject obj = (JSONObject) parser.parse(reader);
+            JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
+            for (Object o : extraOpties) {
+                JSONObject option = (JSONObject) o;
+                String categorie = (String) option.get("categorie");
+                String naam = (String) option.get("naam");
+                Number prijsObj = (Number) option.get("prijs");
+                double prijs = prijsObj.doubleValue();
+                opties.addExtraOpties(categorie, naam, prijs);
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void displayOpties(Opties opties) {
-        System.out.println("Beschikbare opties:");
+    // Funtie om de essentiële opties weer te geven aan de gebruiker, de functie
+    // roept daarna ook de *displayExtraOpties* functie op
+    // die de extra opties print.
+    public void displayEssentieleOpties(Opties opties) {
         System.out.println("=====================================\n");
         System.out.println("~~ ESSENTIËLE OPTIES ~~");
-        displayEssentieleOpties(opties);
-        System.out.println("~~ EXTRA OPTIES ~~");
-        displayExtraOpties(opties);
-        System.out.println("\n=====================================");
-    }
-
-    public void displayEssentieleOpties(Opties opties) {
         Map<String, List<Opties>> essentieleOpties = opties.getEssentieleOpties();
         for (String categorie : essentieleOpties.keySet()) {
             System.out.println("\n|" + categorie + "|");
@@ -86,9 +84,12 @@ public class OptiesInvoer {
                 System.out.println("  -" + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
         }
+        displayExtraOpties(opties);
     }
 
     public void displayExtraOpties(Opties opties) {
+        System.out.println("\n~~ EXTRA OPTIES ~~");
+
         Map<String, List<Opties>> extraOpties = opties.getExtraOpties();
         for (String categorie : extraOpties.keySet()) {
             System.out.println("\n|" + categorie + "|");
@@ -96,18 +97,109 @@ public class OptiesInvoer {
                 System.out.println("  -" + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
         }
+        System.out.println("\n=====================================");
     }
 
-    public List<Opties> getGeselecteerdeOpties(Opties opties) {
+    // Functie om de gebruiker zowel essentiële als extra opties te laten
+    // selecteren, het neemt een Opties object in en returned een List van Opties
+    // objecten.
+    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze
+    // vervolgens.
+    // Er wordt ook rekening gehouden met categorieën die al zijn verwerkt.
+    public List<Opties> selecteerOpties(Opties opties) {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Romp:", opties.getEssentieleOpties()));
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Stuurinrichting:", opties.getEssentieleOpties()));
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Motortype:", opties.getEssentieleOpties()));
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Scheepstype:", opties.getEssentieleOpties()));
-
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Stoelen opties:", opties.getExtraOpties()));
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Navigatie opties:", opties.getExtraOpties()));
-    
+        Set<String> behandeldeCategorieen = new HashSet<String>();
+        JSONParser parser = new JSONParser();
+        try (FileReader reader = new FileReader("opties.json")) {
+            JSONObject obj = (JSONObject) parser.parse(reader);
+            JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
+            JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
+            for (Object o : essentieleOpties) {
+                JSONObject optie = (JSONObject) o;
+                String categorie = (String) optie.get("categorie");
+                if (!behandeldeCategorieen.contains(categorie)) {
+                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getEssentieleOpties()));
+                    behandeldeCategorieen.add(categorie);
+                }
+            }
+            for (Object o : extraOpties) {
+                JSONObject optie = (JSONObject) o;
+                String categorie = (String) optie.get("categorie");
+                if (!behandeldeCategorieen.contains(categorie)) {
+                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getExtraOpties()));
+                    behandeldeCategorieen.add(categorie);
+                }
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
         return geselecteerdeOpties;
+    }
+
+    public Opties kiesOptie(String prompt, Map<String, List<Opties>> opties) {
+        Scanner s = new Scanner(System.in);
+        Opties gekozenOptie = null;
+
+        while (gekozenOptie == null) {
+            System.out.println(prompt);
+            String input = s.nextLine();
+
+            // check if input matches any available option
+            for (List<Opties> optieList : opties.values()) {
+                for (Opties optie : optieList) {
+                    if (optie.getNaam().equalsIgnoreCase(input)) {
+                        // if the option has not been selected before, choose it
+                        if (!geselecteerdeOpties.contains(optie)) {
+                            geselecteerdeOpties.add(optie);
+                            gekozenOptie = optie;
+                            System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
+                            String antwoord = s.nextLine();
+
+                            if (antwoord.equalsIgnoreCase("ja")) {
+                                double korting = 0.0;
+                                boolean validKorting = false;
+                                while (!validKorting) {
+                                    System.out.print("Aantal procent korting voor deze optie is:");
+                                    String kortingInput = s.nextLine();
+
+                                    try {
+                                        korting = Double.parseDouble(kortingInput);
+                                        VoegKortingToe(gekozenOptie, korting);
+
+                                        if (korting < 0 || korting > 100) {
+                                            System.out.println(
+                                                    "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
+
+                                        } else {
+                                            validKorting = true;
+                                        }
+                                    } catch (NumberFormatException e) {
+                                        System.out.println(
+                                                "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
+                                    }
+                                }
+                            }
+                        } else {
+                            System.out.println("Deze optie is al gekozen. Kies een andere optie.");
+                        }
+                        break;
+                    }
+                }
+                if (gekozenOptie != null) {
+                    break;
+                }
+            }
+        }
+        return gekozenOptie;
+    }
+
+    public void VoegKortingToe(Opties optie, double korting) {
+
+        if (korting > 0) {
+            System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
+            optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
+            System.out.printf("De nieuwe prijs van " + optie.getNaam() + " is " + optie.getPrijs() + "EUR");
+
+        }
     }
 }
