@@ -105,9 +105,17 @@ public class OptiesInvoer {
         geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Motortype:", opties.getEssentieleOpties()));
         geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Scheepstype:", opties.getEssentieleOpties()));
 
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Stoelen opties:", opties.getExtraOpties()));
-        geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Navigatie opties:", opties.getExtraOpties()));
-    
+        System.out.println("\nWilt u extra opties selecteren? (ja / nee)");
+        Scanner s = new Scanner(System.in);
+        String antwoord = s.nextLine();
+        while (antwoord.equalsIgnoreCase("ja")) {
+            geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Stoelen opties:", opties.getExtraOpties()));
+            geselecteerdeOpties.add(opties.kiesOptie("\nSelecteer Navigatie opties:", opties.getExtraOpties()));
+
+            System.out.println("\nWilt u nog meer extra opties selecteren? (ja / nee)");
+            antwoord = s.nextLine();
+        }
+
         return geselecteerdeOpties;
     }
 }
