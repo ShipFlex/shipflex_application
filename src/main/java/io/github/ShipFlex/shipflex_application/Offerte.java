@@ -32,14 +32,12 @@ public class Offerte {
         System.out.println("\n" + "---. Klantgegevens .---");
         System.out.println(
                 klant.getNaam() + "\n" +
-                        klant.getAdres()+ "\n" +
-                        klant.getPostcode()+ "\n" +
-                        klant.getPlaats()+ "\n" +
-                        klant.getLand()+ "\n" +
-                        klant.getEmailadres()+ "\n" +
-                        klant.getTelefoonnummer()
-        );
-
+                        klant.getAdres() + "\n" +
+                        klant.getPostcode() + "\n" +
+                        klant.getPlaats() + "\n" +
+                        klant.getLand() + "\n" +
+                        klant.getEmailadres() + "\n" +
+                        klant.getTelefoonnummer());
 
         if (klant instanceof Bedrijf) {
             Bedrijf bedrijf = (Bedrijf) klant;
@@ -50,4 +48,3 @@ public class Offerte {
         }
     }
 }
-
