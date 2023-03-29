@@ -1,0 +1,96 @@
+{
+    "essentieleOpties": [
+        {
+            "categorie": "Scheepstype",
+            "naam": "Catarman",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Jacht",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Motorboot",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Zeilboot",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Aluminium",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Staal",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Hout",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Plastic",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Hydraulisch",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Elektrisch",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Mechanisch",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Diesel",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Benzine",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Elektrisch",
+            "prijs": 40000
+        }
+    ],
+    "extraOpties": [
+        {
+            "categorie": "Stoelen",
+            "naam": "Leer",
+            "prijs": 50000
+        },
+        {
+            "categorie": "Stoelen",
+            "naam": "Verwarmde stoelen",
+            "prijs": 50000
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "GPS",
+            "prijs": 500.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Kaartupdates",
+            "prijs": 250.0
+        }
+    ]
+}
