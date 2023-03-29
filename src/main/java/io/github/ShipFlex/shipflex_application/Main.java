@@ -9,22 +9,19 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String args[]) throws IOException {
-        String outputFile = "B:/Java/shipflex_application/output_offerte.txt";
+        // String outputFile = "B:/Java/shipflex_application/output_offerte.txt";
         KlantInvoer klantInvoer = new KlantInvoer();
-        Klant klant =  klantInvoer.getKlantGegevens();
+        Klant klant = klantInvoer.getKlantGegevens();
 
         OptiesInvoer oi = new OptiesInvoer();
-        
         Opties op = oi.getOpties();
-        
-        oi.displayOpties(op);
-        oi.getGeselecteerdeOpties(op);
+
+        oi.displayEssentieleOpties(op);
+        oi.selecteerOpties(op);
 
         System.out.println("");
-        Offerte offerte = new Offerte(klant);
-        offerte.printOfferte();
 
-    
-        // offerte.printOfferteToFile(outputFile);
+        Offerte of = new Offerte(klant);
+        of.printOfferte();
     }
 }
