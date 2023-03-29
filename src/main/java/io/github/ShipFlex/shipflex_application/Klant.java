@@ -11,9 +11,9 @@ public class Klant {
     private String telefoonnummer;
     private String klantnummer;
 
-    //Constructor
-    public Klant(String naam, String adres, String postcode, String plaats, String land, String emailadres, String telefoonnummer
-    , String klantnummer) {
+    // Constructor
+    public Klant(String naam, String adres, String postcode, String plaats, String land, String emailadres,
+            String telefoonnummer, String klantnummer) {
         this.naam = naam;
         this.adres = adres;
         this.postcode = postcode;
@@ -90,6 +90,3 @@ public class Klant {
         this.klantnummer = klantnummer;
     }
 }
-
-
-
