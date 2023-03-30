@@ -35,7 +35,7 @@ public class OptiesInvoer {
     // toe te voegen aan een object van het type Opties.
     public void addEssentieleOpties(Opties opties) {
         JSONParser parser = new JSONParser();
-        try (FileReader reader = new FileReader("opties.json")) {
+        try (FileReader reader = new FileReader("optiess.json")) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
             for (Object o : essentieleOpties) {
@@ -47,7 +47,9 @@ public class OptiesInvoer {
                 opties.addEssentieleOpties(categorie, naam, prijs);
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            System.err.println(
+                "\n** Er is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage() + " **");
+            // ga verder met de rest van de code
         }
     }
 
@@ -59,15 +61,17 @@ public class OptiesInvoer {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
             for (Object o : extraOpties) {
-                JSONObject option = (JSONObject) o;
-                String categorie = (String) option.get("categorie");
-                String naam = (String) option.get("naam");
-                Number prijsObj = (Number) option.get("prijs");
+                JSONObject optie = (JSONObject) o;
+                String categorie = (String) optie.get("categorie");
+                String naam = (String) optie.get("naam");
+                Number prijsObj = (Number) optie.get("prijs");
                 Integer prijs = prijsObj.intValue();
                 opties.addExtraOpties(categorie, naam, prijs);
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            System.err.println(
+                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+            // ga verder met de rest van de code
         }
     }
 
@@ -75,13 +79,13 @@ public class OptiesInvoer {
     // roept daarna ook de *displayExtraOpties* functie op
     // die de extra opties print.
     public void displayEssentieleOpties(Opties opties) {
-        System.out.println("=====================================\n");
+        System.out.println("=====================================");
         System.out.println("~~ ESSENTIËLE OPTIES ~~");
         Map<String, List<Opties>> essentieleOpties = opties.getEssentieleOpties();
         for (String categorie : essentieleOpties.keySet()) {
-            System.out.println("\n|" + categorie + "|");
+            System.out.println("\n|" + categorie.toUpperCase() + "|");
             for (Opties optie : essentieleOpties.get(categorie)) {
-                System.out.println("  -" + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
+                System.out.println("  - " + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
         }
         displayExtraOpties(opties);
@@ -92,12 +96,12 @@ public class OptiesInvoer {
 
         Map<String, List<Opties>> extraOpties = opties.getExtraOpties();
         for (String categorie : extraOpties.keySet()) {
-            System.out.println("\n|" + categorie + "|");
+            System.out.println("\n|" + categorie.toUpperCase() + "|");
             for (Opties optie : extraOpties.get(categorie)) {
-                System.out.println("  -" + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
+                System.out.println("  - " + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
         }
-        System.out.println("\n=====================================");
+        System.out.println("=====================================");
     }
 
     // Functie om de gebruiker zowel essentiële als extra opties te laten
@@ -144,62 +148,64 @@ public class OptiesInvoer {
             System.out.println(prompt);
             String input = s.nextLine();
 
-            // check if input matches any available option
-            for (List<Opties> optieList : opties.values()) {
-                for (Opties optie : optieList) {
-                    if (optie.getNaam().equalsIgnoreCase(input)) {
-                        // if the option has not been selected before, choose it
-                        if (!geselecteerdeOpties.contains(optie)) {
-                            geselecteerdeOpties.add(optie);
-                            gekozenOptie = optie;
-                            System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
-                            String antwoord = s.nextLine();
-
-                            if (antwoord.equalsIgnoreCase("ja")) {
-                                Integer korting = 0;
-                                boolean validKorting = false;
-                                while (!validKorting) {
-                                    System.out.print("Aantal procent korting voor deze optie is:");
-                                    String kortingInput = s.nextLine();
-
-                                    try {
-                                        korting = Integer.parseInt(kortingInput);
-                                        VoegKortingToe(gekozenOptie, korting);
-
-                                        if (korting < 0 || korting > 100) {
-                                            System.out.println(
-                                                    "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
-
-                                        } else {
-                                            validKorting = true;
-                                        }
-                                    } catch (NumberFormatException e) {
-                                        System.out.println(
-                                                "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
-                                    }
-                                }
-                            }
-                        } else {
-                            System.out.println("Deze optie is al gekozen. Kies een andere optie.");
-                        }
-                        break;
-                    }
+            gekozenOptie = zoekOptie(input, opties);
+            if (gekozenOptie != null) {
+                if (!geselecteerdeOpties.contains(gekozenOptie)) {
+                    geselecteerdeOpties.add(gekozenOptie);
+                    VoegKortingToe(gekozenOptie, s);
+                } else {
+                    System.out.println("Deze optie is al gekozen. Kies een andere optie.");
+                    gekozenOptie = null;
                 }
-                if (gekozenOptie != null) {
-                    break;
-                }
+            } else {
+                System.out.println("Ongeldige optie. Kies een andere optie.");
             }
         }
         return gekozenOptie;
     }
 
-    public void VoegKortingToe(Opties optie, Integer korting) {
+    private Opties zoekOptie(String input, Map<String, List<Opties>> opties) {
+        for (List<Opties> optieList : opties.values()) {
+            for (Opties optie : optieList) {
+                if (optie.getNaam().equalsIgnoreCase(input)) {
+                    return optie;
+                }
+            }
+        }
+        return null;
+    }
 
-        if (korting > 0) {
-            System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
-            optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
-            System.out.printf("De nieuwe prijs van " + optie.getNaam() + " is " + optie.getPrijs() + "EUR");
+    private void VoegKortingToe(Opties optie, Scanner s) {
+        System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
+        String antwoord = s.nextLine();
 
+        if (antwoord.equalsIgnoreCase("ja")) {
+            Integer korting = 0;
+            boolean validKorting = false;
+            while (!validKorting) {
+                System.out.print("Aantal procent korting voor deze optie is:");
+                String kortingInput = s.nextLine();
+
+                try {
+                    korting = Integer.parseInt(kortingInput);
+                    optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
+                    System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
+                    System.out.printf("De nieuwe prijs van " + optie.getNaam() + " is " + optie.getPrijs() + "EUR\n");
+
+                    if (korting < 0 || korting > 100) {
+                        System.out.println(
+                                "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
+
+                    } else {
+                        validKorting = true;
+                    }
+                    
+                } catch (NumberFormatException e) {
+                    System.out.println(
+                            "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
+                }
+            }
         }
     }
+
 }
