@@ -13,15 +13,13 @@ public class Bedrijf extends Klant {
     }
 
     // Getter & Setter
-    public String getKvkNummer() {
-        return kvkNummer;
-    }
-
     public void setKvkNummer(String kvkNummer) {
         this.kvkNummer = kvkNummer;
     }
 
-    public String toString() {
-        return super.toString() + "\n KVK: " + kvkNummer;
+    @Override
+    public String getExtraDetails() {
+        return kvkNummer;
     }
 }
+

@@ -89,4 +89,9 @@ public class Klant {
     public void setKlantnummer(String klantnummer) {
         this.klantnummer = klantnummer;
     }
+
+    // Methode om de extra detail van de klant te krijgen
+    public String getExtraDetails() {
+        return "";
+    }
 }
