@@ -25,7 +25,7 @@ public class OptiesInvoer {
     }
 
     public Opties getOpties() {
-        Opties opties = new Opties("Auto", 0.0);
+        Opties opties = new Opties("Auto", 0);
         addEssentieleOpties(opties);
         addExtraOpties(opties);
         return opties;
@@ -43,7 +43,7 @@ public class OptiesInvoer {
                 String categorie = (String) optie.get("categorie");
                 String naam = (String) optie.get("naam");
                 Number prijsObj = (Number) optie.get("prijs");
-                double prijs = prijsObj.doubleValue();
+                Integer prijs = prijsObj.intValue();
                 opties.addEssentieleOpties(categorie, naam, prijs);
             }
         } catch (IOException | ParseException e) {
@@ -63,7 +63,7 @@ public class OptiesInvoer {
                 String categorie = (String) option.get("categorie");
                 String naam = (String) option.get("naam");
                 Number prijsObj = (Number) option.get("prijs");
-                double prijs = prijsObj.doubleValue();
+                Integer prijs = prijsObj.intValue();
                 opties.addExtraOpties(categorie, naam, prijs);
             }
         } catch (IOException | ParseException e) {
@@ -156,14 +156,14 @@ public class OptiesInvoer {
                             String antwoord = s.nextLine();
 
                             if (antwoord.equalsIgnoreCase("ja")) {
-                                double korting = 0.0;
+                                Integer korting = 0;
                                 boolean validKorting = false;
                                 while (!validKorting) {
                                     System.out.print("Aantal procent korting voor deze optie is:");
                                     String kortingInput = s.nextLine();
 
                                     try {
-                                        korting = Double.parseDouble(kortingInput);
+                                        korting = Integer.parseInt(kortingInput);
                                         VoegKortingToe(gekozenOptie, korting);
 
                                         if (korting < 0 || korting > 100) {
@@ -193,7 +193,7 @@ public class OptiesInvoer {
         return gekozenOptie;
     }
 
-    public void VoegKortingToe(Opties optie, double korting) {
+    public void VoegKortingToe(Opties optie, Integer korting) {
 
         if (korting > 0) {
             System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
