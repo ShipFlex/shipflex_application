@@ -38,13 +38,6 @@ public class Offerte {
                         klant.getLand() + "\n" +
                         klant.getEmailadres() + "\n" +
                         klant.getTelefoonnummer());
-
-        if (klant instanceof Bedrijf) {
-            Bedrijf bedrijf = (Bedrijf) klant;
-            System.out.println(bedrijf.getKvkNummer());
-        } else if (klant instanceof Particulier) {
-            Particulier particulier = (Particulier) klant;
-            System.out.println(particulier.getKlantnummer());
-        }
+                        klant.getExtraDetails();
     }
 }
