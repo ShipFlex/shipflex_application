@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class Opties {
     private String naam;
-    private double prijs;
+    private Integer prijs;
     private Map<String, List<Opties>> essentieleOpties;
     private Map<String, List<Opties>> extraOpties;
 
     // Constructor
-    public Opties(String naam, double prijs) {
+    public Opties(String naam, Integer prijs) {
         this.naam = naam;
         this.prijs = prijs;
         this.essentieleOpties = new HashMap<String, List<Opties>>();
@@ -31,11 +31,11 @@ public class Opties {
         this.naam = naam;
     }
 
-    public double getPrijs() {
+    public Integer getPrijs() {
         return prijs;
     }
 
-    public void setPrijs(double prijs) {
+    public void setPrijs(Integer prijs) {
         this.prijs = prijs;
     }
 
@@ -48,7 +48,7 @@ public class Opties {
     }
 
     // Methode voor het toevoegen van Essentiële Opties
-    public void addEssentieleOpties(String categorie, String naam, double prijs) {
+    public void addEssentieleOpties(String categorie, String naam, Integer prijs) {
         Opties optie = new Opties(naam, prijs);
 
         if (!this.essentieleOpties.containsKey(categorie)) {
@@ -58,7 +58,7 @@ public class Opties {
     }
 
     // Methode voor het toevoegen van Extra Opties
-    public void addExtraOpties(String categorie, String naam, double prijs) {
+    public void addExtraOpties(String categorie, String naam, Integer prijs) {
         Opties optie = new Opties(naam, prijs);
 
         if (!this.extraOpties.containsKey(categorie)) {
