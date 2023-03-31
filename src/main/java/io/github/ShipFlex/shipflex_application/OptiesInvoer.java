@@ -149,7 +149,9 @@ public class OptiesInvoer implements OptieValidatie {
                 }
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            System.err.println(
+                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+                System.exit(0);
         }
         return geselecteerdeOpties;
     }
