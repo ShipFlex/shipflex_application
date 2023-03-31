@@ -1,6 +1,7 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
+import java.io.File;
 // Imports
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,20 +18,37 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class OptiesInvoer {
+public class OptiesInvoer implements OptieValidatie {
     private List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
+    private Scanner input;
 
     // Constructor
     public OptiesInvoer() {
+        this.input = new Scanner(System.in);
     }
 
     public Opties getOpties() {
-        Opties opties = new Opties("Auto", 0);
+        Opties opties = new Opties("Boot", 0);
         addEssentieleOpties(opties);
         addExtraOpties(opties);
         return opties;
     }
 
+    @Override
+    public void validatieKeuze() {
+            System.err.println(
+                    "\n** Er is een fout opgetreden tijdens het lezen van het bestand. Wilt u doorgaan zonder de Extra Opties? (ja / nee) **");
+            String antwoord = input.nextLine().toLowerCase();
+            if (antwoord.equals("ja")) {
+                return;
+            } else if (antwoord.equals("nee")) {
+                System.exit(0);
+            } else {
+                System.out.println("Ongeldige invoer. Het programma stopt nu.");
+                System.exit(0);
+            }
+        }
+    
     // Functie om de essentiële opties uit een JSON file (database) uit te lezen en
     // toe te voegen aan een object van het type Opties.
     public void addEssentieleOpties(Opties opties) {
@@ -48,11 +66,11 @@ public class OptiesInvoer {
             }
         } catch (IOException | ParseException e) {
             System.err.println(
-                "\n** Er is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage() + " **");
-            // ga verder met de rest van de code
+                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+                System.exit(0);
         }
     }
-
+    
     // Functie om de extra opties uit een JSON file (database) uit te lezen en toe
     // te voegen aan een object van het type Opties.
     public void addExtraOpties(Opties opties) {
@@ -69,9 +87,7 @@ public class OptiesInvoer {
                 opties.addExtraOpties(categorie, naam, prijs);
             }
         } catch (IOException | ParseException e) {
-            System.err.println(
-                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
-            // ga verder met de rest van de code
+            validatieKeuze();
         }
     }
 
@@ -83,7 +99,7 @@ public class OptiesInvoer {
         System.out.println("~~ ESSENTIËLE OPTIES ~~");
         Map<String, List<Opties>> essentieleOpties = opties.getEssentieleOpties();
         for (String categorie : essentieleOpties.keySet()) {
-            System.out.println("\n|" + categorie.toUpperCase() + "|");
+            System.out.println("\n|" + categorie + "|");
             for (Opties optie : essentieleOpties.get(categorie)) {
                 System.out.println("  - " + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
@@ -105,10 +121,8 @@ public class OptiesInvoer {
     }
 
     // Functie om de gebruiker zowel essentiële als extra opties te laten
-    // selecteren, het neemt een Opties object in en returned een List van Opties
-    // objecten.
-    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze
-    // vervolgens.
+    // selecteren, het neemt een Opties object in en returned een List van Opties objecten.
+    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze vervolgens.
     // Er wordt ook rekening gehouden met categorieën die al zijn verwerkt.
     public List<Opties> selecteerOpties(Opties opties) {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
@@ -130,7 +144,7 @@ public class OptiesInvoer {
                 JSONObject optie = (JSONObject) o;
                 String categorie = (String) optie.get("categorie");
                 if (!behandeldeCategorieen.contains(categorie)) {
-                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getExtraOpties()));
+                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":".toUpperCase(), opties.getExtraOpties()));
                     behandeldeCategorieen.add(categorie);
                 }
             }
@@ -183,14 +197,14 @@ public class OptiesInvoer {
             Integer korting = 0;
             boolean validKorting = false;
             while (!validKorting) {
-                System.out.print("Aantal procent korting voor deze optie is:");
+                System.out.print("Aantal procent korting voor deze optie is:  ");
                 String kortingInput = s.nextLine();
 
                 try {
                     korting = Integer.parseInt(kortingInput);
                     optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
                     System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
-                    System.out.printf("De nieuwe prijs van " + optie.getNaam() + " is " + optie.getPrijs() + "EUR\n");
+                    System.out.printf("De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
 
                     if (korting < 0 || korting > 100) {
                         System.out.println(
