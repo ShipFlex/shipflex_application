@@ -1,6 +1,7 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
+import java.io.File;
 // Imports
 import java.util.Scanner;
 
@@ -28,9 +29,9 @@ public class KlantInvoer {
         int keuze;
         while (true) {
             System.out.println("Welk type klant heeft u?");
-            System.out.println("1. Particulier");
-            System.out.println("2. Bedrijf");
-
+            System.out.println("1. Particulier   2. Bedrijf");
+            System.out.println("------------------------------");
+            
             try {
                 keuze = Integer.parseInt(input.nextLine());
                 if (keuze == 1 || keuze == 2) {
@@ -41,19 +42,19 @@ public class KlantInvoer {
             }
 
             // Op dit punt betekent het dat de ingevulde keuze ongeldig is
-            System.out.println("Ongeldige keuze, kies 1 of 2.");
+            System.out.println("Ongeldige keuze, kies 1 of 2!");
         }
 
         if (keuze == 1) {
             // Begin vragenlijst Particulier
-            System.out.println("~~Invulformulier Klantgegevens ~~\n");
+            System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
             String naam = getValidInput("Voer de naam van de klant in: ");
             String adres = getValidInput("Voer het adres van de klant in: ");
             String postcode = getValidInput("Voer de postcode van de klant in: ");
             String plaats = getValidInput("Voer de plaats van de klant in: ");
             String land = getValidInput("Voer het land van de klant in: ");
             String emailadres = getValidInput("Voer het email van de klant in: ");
-            String telefoonnummer = getValidInput("Voer het telefoonnummer (+316) van de klant in: ");
+            String telefoonnummer = getValidInput("Voer het telefoonnummer van de klant in: ");
             String klantnummer = getValidInput("Voer het klantnummer van de klant in: ");
 
             return new Particulier(naam, adres, postcode, plaats, land, emailadres, telefoonnummer, klantnummer);
