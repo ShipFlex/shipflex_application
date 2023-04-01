@@ -1,7 +1,6 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
-import java.io.File;
 // Imports
 import java.util.Scanner;
 
@@ -12,8 +11,12 @@ public class KlantInvoer {
         this.input = new Scanner(System.in);
     }
 
+    public KlantInvoer(Scanner scanner) {
+        this.input = scanner;
+    }
+
     // Functie om ervoor te zorgen dat alle velden worden ingvuld bij het invoeren van de klantgegevens.
-    private String getValidInput(String prompt) {
+    public String getValidInput(String prompt) {
         String input;
         do {
             System.out.print(prompt);
