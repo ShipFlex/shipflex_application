@@ -32,12 +32,12 @@ public class KlantInvoer {
         int keuze;
         while (true) {
             System.out.println("Welk type klant heeft u?");
-            System.out.println("1. Particulier   2. Bedrijf");
+            System.out.println("1. Particulier   2. Bedrijf  3.anders");
             System.out.println("------------------------------");
             
             try {
                 keuze = Integer.parseInt(input.nextLine());
-                if (keuze == 1 || keuze == 2) {
+                if (keuze == 1 || keuze == 2 || keuze == 3) {
                     break;
                 }
             } catch (NumberFormatException e) {
@@ -45,7 +45,7 @@ public class KlantInvoer {
             }
 
             // Op dit punt betekent het dat de ingevulde keuze ongeldig is
-            System.out.println("Ongeldige keuze, kies 1 of 2!");
+            System.out.println("Ongeldige keuze, kies 1, 2 of 3!");
         }
 
         if (keuze == 1) {
@@ -75,6 +75,25 @@ public class KlantInvoer {
             String kvkNummer = getValidInput("Voer het KVK-nummer van het bedrijf in: ");
             return new Bedrijf(bedrijfsnaam, bedrijfsadres, bedrijfspostcode, bedrijfsplaats, bedrijfsland,
                     bedrijfsemailadres, bedrijfstelefoon, bedrijfsemailadres, kvkNummer);
+        }
+          // vragenlijst voor overige klanttypes
+        if (keuze == 3){
+        String klanttype = getValidInput("Voer het type klant in: ");
+        String naamtype = getValidInput("Voer de naam van de " + klanttype + "in: ");
+        String adrestype = getValidInput("Voer de adres van de " + klanttype + "in: ");
+        String postcodetype = getValidInput("Voer de postcode van de " + klanttype + "in: ");
+        String plaatstype = getValidInput("Voer de postcode van de "+ klanttype + "in: ");
+        String landtype = getValidInput("Voer het land van de "+ klanttype + "in: ");
+        String emailtype = getValidInput("Voer het emailadres van de " + klanttype + "in: ");
+        String telefoonnummertype = getValidInput("Voer het telefoonnummer van de " + klanttype + "in: ");
+        String typenummer = getValidInput("voer het " + klanttype + "code in van de " + klanttype + "in: ");
+
+        return new OverigeType(klanttype, naamtype, adrestype, postcodetype, plaatstype, landtype, emailtype, telefoonnummertype, 
+        typenummer);
+        
+            
+    
+
         }
         return null;
     }
