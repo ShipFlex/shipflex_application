@@ -53,7 +53,7 @@ public class OptiesInvoer implements OptieValidatie {
     // toe te voegen aan een object van het type Opties.
     public void addEssentieleOpties(Opties opties) {
         JSONParser parser = new JSONParser();
-        try (FileReader reader = new FileReader("optiess.json")) {
+        try (FileReader reader = new FileReader("opties.json")) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
             for (Object o : essentieleOpties) {
