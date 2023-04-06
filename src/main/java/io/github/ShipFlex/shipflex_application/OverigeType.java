@@ -11,8 +11,8 @@ public class OverigeType extends Klant {
         this.typenummer = typenummer;
     }
 
-    // Getter & Setter
-    public void setKvkNummer(String typenummer) {
+    // Setter
+    public void setTypenummer(String typenummer) {
         this.typenummer = typenummer;
     }
 

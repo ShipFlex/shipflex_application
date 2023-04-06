@@ -1,7 +1,6 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
-import java.io.File;
 // Imports
 import java.io.FileReader;
 import java.io.IOException;
@@ -75,7 +74,7 @@ public class OptiesInvoer implements OptieValidatie {
     // te voegen aan een object van het type Opties.
     public void addExtraOpties(Opties opties) {
         JSONParser parser = new JSONParser();
-        try (FileReader reader = new FileReader("opties.json")) {
+        try (FileReader reader = new FileReader("optiess.json")) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
             for (Object o : extraOpties) {
