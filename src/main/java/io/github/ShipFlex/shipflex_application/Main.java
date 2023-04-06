@@ -17,7 +17,7 @@ class Main {
         Opties op = oi.getOpties();
 
         oi.displayEssentieleOpties(op);
-        oi.selecteerOpties(op);
+        oi.optiesJSON(op);
 
         System.out.println("");
 
