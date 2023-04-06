@@ -23,12 +23,14 @@ public class Offerte {
         this.gekozenOpties.add(optie);
     }
 
-    // methode die de uiteindelijk offerte print
-    public void printOfferte() {
+    private void printBedrijfsGegevens() {
         System.out.println("\n" + "---. Bedrijfsgegevens .---");
         System.out.println("MyCompany \n" + "Voorbeeldstraat 3 \n" + "0101AB \n" +
                 "Den Haag \n" + "MyCompany.org" + "0102 0304 \n");
+    }
 
+    // methode die de uiteindelijk offerte print
+    public void printOfferte() {
         System.out.println("\n" + "---. Klantgegevens .---");
         System.out.println(
                 klant.getNaam() + "\n" +
@@ -38,6 +40,6 @@ public class Offerte {
                         klant.getLand() + "\n" +
                         klant.getEmailadres() + "\n" +
                         klant.getTelefoonnummer());
-                        klant.getExtraDetails();
+        klant.getExtraDetails();
     }
 }

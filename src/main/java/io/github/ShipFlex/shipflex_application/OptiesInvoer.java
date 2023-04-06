@@ -36,19 +36,19 @@ public class OptiesInvoer implements OptieValidatie {
 
     @Override
     public void validatieKeuze() {
-            System.err.println(
-                    "\n** Er is een fout opgetreden tijdens het lezen van het bestand. Wilt u doorgaan zonder de Extra Opties? (ja / nee) **");
-            String antwoord = input.nextLine().toLowerCase();
-            if (antwoord.equals("ja")) {
-                return;
-            } else if (antwoord.equals("nee")) {
-                System.exit(0);
-            } else {
-                System.out.println("Ongeldige invoer. Het programma stopt nu.");
-                System.exit(0);
-            }
+        System.err.println(
+                "\n** Er is een fout opgetreden tijdens het lezen van het bestand. Wilt u doorgaan zonder de Extra Opties? (ja / nee) **");
+        String antwoord = input.nextLine().toLowerCase();
+        if (antwoord.equals("ja")) {
+            return;
+        } else if (antwoord.equals("nee")) {
+            System.exit(0);
+        } else {
+            System.out.println("Ongeldige invoer. Het programma stopt nu.");
+            System.exit(0);
         }
-    
+    }
+
     // Functie om de essentiële opties uit een JSON file (database) uit te lezen en
     // toe te voegen aan een object van het type Opties.
     public void addEssentieleOpties(Opties opties) {
@@ -66,11 +66,11 @@ public class OptiesInvoer implements OptieValidatie {
             }
         } catch (IOException | ParseException e) {
             System.err.println(
-                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
-                System.exit(0);
+                    "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+            System.exit(0);
         }
     }
-    
+
     // Functie om de extra opties uit een JSON file (database) uit te lezen en toe
     // te voegen aan een object van het type Opties.
     public void addExtraOpties(Opties opties) {
@@ -121,10 +121,12 @@ public class OptiesInvoer implements OptieValidatie {
     }
 
     // Functie om de gebruiker zowel essentiële als extra opties te laten
-    // selecteren, het neemt een Opties object in en returned een List van Opties objecten.
-    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze vervolgens.
+    // selecteren, het neemt een Opties object in en returned een List van Opties
+    // objecten.
+    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze
+    // vervolgens.
     // Er wordt ook rekening gehouden met categorieën die al zijn verwerkt.
-    public List<Opties> selecteerOpties(Opties opties) {
+    public List<Opties> optiesJSON(Opties opties) {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
         Set<String> behandeldeCategorieen = new HashSet<String>();
         JSONParser parser = new JSONParser();
@@ -132,40 +134,56 @@ public class OptiesInvoer implements OptieValidatie {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
             JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
-            for (Object o : essentieleOpties) {
-                JSONObject optie = (JSONObject) o;
-                String categorie = (String) optie.get("categorie");
-                if (!behandeldeCategorieen.contains(categorie)) {
-                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getEssentieleOpties()));
-                    behandeldeCategorieen.add(categorie);
-                }
-            }
-            System.out.println("Wilt u extra opties kiezen? (ja / nee)");
-            String keuze = input.nextLine().toLowerCase();
-            if (keuze.equals("ja")) {
-                for (Object o : extraOpties) {
-                    JSONObject optie = (JSONObject) o;
-                    String categorie = (String) optie.get("categorie");
-                    if (!behandeldeCategorieen.contains(categorie)) {
-                        boolean meerOpties = true;
-                        while (meerOpties) {
-                            geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties()));
-                            System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
-                            String meerOptiesAntwoord = input.nextLine().toLowerCase();
-                            if (meerOptiesAntwoord.equals("nee")) {
-                                meerOpties = false;
-                            }
-                        }
-                        behandeldeCategorieen.add(categorie);
-                    }
-                }
-            }
+            selecteerOpties(opties, geselecteerdeOpties, behandeldeCategorieen, essentieleOpties);
+            selecteerExtraOpties(opties, geselecteerdeOpties, behandeldeCategorieen, extraOpties);
         } catch (IOException | ParseException e) {
             System.err.println(
                     "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
             System.exit(0);
         }
         return geselecteerdeOpties;
+    }
+
+    private void selecteerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
+            JSONArray essentieleOpties) {
+        for (Object o : essentieleOpties) {
+            JSONObject optie = (JSONObject) o;
+            String categorie = (String) optie.get("categorie");
+            if (!behandeldeCategorieen.contains(categorie)) {
+                geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getEssentieleOpties()));
+                behandeldeCategorieen.add(categorie);
+            }
+        }
+    }
+
+    private void selecteerExtraOpties(Opties opties, List<Opties> geselecteerdeOpties,
+            Set<String> behandeldeCategorieen,
+            JSONArray extraOpties) {
+        System.out.println("Wilt u extra opties kiezen? (ja / nee)");
+        String keuze = input.nextLine().toLowerCase();
+        if (keuze.equals("ja")) {
+            for (Object o : extraOpties) {
+                JSONObject optie = (JSONObject) o;
+                String categorie = (String) optie.get("categorie");
+                selecteerMeerOpties(opties, geselecteerdeOpties, behandeldeCategorieen, categorie);
+            }
+        }
+    }
+
+    private void selecteerMeerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
+            String categorie) {
+        if (!behandeldeCategorieen.contains(categorie)) {
+            boolean meerOpties = true;
+            while (meerOpties) {
+                geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties()));
+                System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
+                String meerOptiesAntwoord = input.nextLine().toLowerCase();
+                if (meerOptiesAntwoord.equals("nee")) {
+                    meerOpties = false;
+                }
+            }
+            behandeldeCategorieen.add(categorie);
+        }
     }
 
     public Opties kiesOptie(String prompt, Map<String, List<Opties>> opties) {
@@ -214,26 +232,33 @@ public class OptiesInvoer implements OptieValidatie {
                 System.out.print("Aantal procent korting voor deze optie is:  ");
                 String kortingInput = s.nextLine();
 
-                try {
-                    korting = Integer.parseInt(kortingInput);
-                    optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
-                    System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
-                    System.out.printf("De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
-
-                    if (korting < 0 || korting > 100) {
-                        System.out.println(
-                                "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
-
-                    } else {
-                        validKorting = true;
-                    }
-                    
-                } catch (NumberFormatException e) {
-                    System.out.println(
-                            "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
-                }
+                validKorting = berekenKorting(optie, validKorting, kortingInput);
             }
         }
+    }
+
+    private boolean berekenKorting(Opties optie, boolean validKorting, String kortingInput) {
+        Integer korting;
+        try {
+            korting = Integer.parseInt(kortingInput);
+            optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
+            System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
+            System.out.printf(
+                    "De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
+
+            if (korting < 0 || korting > 100) {
+                System.out.println(
+                        "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
+
+            } else {
+                validKorting = true;
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println(
+                    "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
+        }
+        return validKorting;
     }
 
 }
