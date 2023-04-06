@@ -15,7 +15,8 @@ public class KlantInvoer {
         this.input = scanner;
     }
 
-    // Functie om ervoor te zorgen dat alle velden worden ingvuld bij het invoeren van de klantgegevens.
+    // Functie om ervoor te zorgen dat alle velden worden ingvuld bij het invoeren
+    // van de klantgegevens.
     public String getValidInput(String prompt) {
         String input;
         do {
@@ -32,9 +33,9 @@ public class KlantInvoer {
         int keuze;
         while (true) {
             System.out.println("Welk type klant heeft u?");
-            System.out.println("1. Particulier   2. Bedrijf  3.anders");
-            System.out.println("------------------------------");
-            
+            System.out.println("1. Particulier   2. Bedrijf   3. Anders");
+            System.out.println("---------------------------------------");
+
             try {
                 keuze = Integer.parseInt(input.nextLine());
                 if (keuze == 1 || keuze == 2 || keuze == 3) {
@@ -76,23 +77,21 @@ public class KlantInvoer {
             return new Bedrijf(bedrijfsnaam, bedrijfsadres, bedrijfspostcode, bedrijfsplaats, bedrijfsland,
                     bedrijfsemailadres, bedrijfstelefoon, bedrijfsemailadres, kvkNummer);
         }
-          // vragenlijst voor overige klanttypes
-        if (keuze == 3){
-        String klanttype = getValidInput("Voer het type klant in: ");
-        String naamtype = getValidInput("Voer de naam van de " + klanttype + "in: ");
-        String adrestype = getValidInput("Voer de adres van de " + klanttype + "in: ");
-        String postcodetype = getValidInput("Voer de postcode van de " + klanttype + "in: ");
-        String plaatstype = getValidInput("Voer de postcode van de "+ klanttype + "in: ");
-        String landtype = getValidInput("Voer het land van de "+ klanttype + "in: ");
-        String emailtype = getValidInput("Voer het emailadres van de " + klanttype + "in: ");
-        String telefoonnummertype = getValidInput("Voer het telefoonnummer van de " + klanttype + "in: ");
-        String typenummer = getValidInput("voer het " + klanttype + "code in van de " + klanttype + "in: ");
+        // vragenlijst voor overige klanttypes
+        if (keuze == 3) {
+            String klanttype = getValidInput("Voer het type klant in: ");
+            String naamtype = getValidInput("Voer de naam van de " + klanttype + " in: ");
+            String adrestype = getValidInput("Voer de adres van de " + klanttype + " in: ");
+            String postcodetype = getValidInput("Voer de postcode van de " + klanttype + " in: ");
+            String plaatstype = getValidInput("Voer de postcode van de " + klanttype + " in: ");
+            String landtype = getValidInput("Voer het land van de " + klanttype + " in: ");
+            String emailtype = getValidInput("Voer het emailadres van de " + klanttype + " in: ");
+            String telefoonnummertype = getValidInput("Voer het telefoonnummer van de " + klanttype + " in: ");
+            String typenummer = getValidInput("voer het " + klanttype + "code in van de " + klanttype + " in: ");
 
-        return new OverigeType(klanttype, naamtype, adrestype, postcodetype, plaatstype, landtype, emailtype, telefoonnummertype, 
-        typenummer);
-        
-            
-    
+            return new OverigeType(klanttype, naamtype, adrestype, postcodetype, plaatstype, landtype, emailtype,
+                    telefoonnummertype,
+                    typenummer);
 
         }
         return null;
