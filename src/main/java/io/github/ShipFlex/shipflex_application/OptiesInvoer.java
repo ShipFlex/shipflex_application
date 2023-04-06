@@ -140,18 +140,30 @@ public class OptiesInvoer implements OptieValidatie {
                     behandeldeCategorieen.add(categorie);
                 }
             }
-            for (Object o : extraOpties) {
-                JSONObject optie = (JSONObject) o;
-                String categorie = (String) optie.get("categorie");
-                if (!behandeldeCategorieen.contains(categorie)) {
-                    geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":".toUpperCase(), opties.getExtraOpties()));
-                    behandeldeCategorieen.add(categorie);
+            System.out.println("Wilt u extra opties kiezen? (ja / nee)");
+            String keuze = input.nextLine().toLowerCase();
+            if (keuze.equals("ja")) {
+                for (Object o : extraOpties) {
+                    JSONObject optie = (JSONObject) o;
+                    String categorie = (String) optie.get("categorie");
+                    if (!behandeldeCategorieen.contains(categorie)) {
+                        boolean meerOpties = true;
+                        while (meerOpties) {
+                            geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties()));
+                            System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
+                            String meerOptiesAntwoord = input.nextLine().toLowerCase();
+                            if (meerOptiesAntwoord.equals("nee")) {
+                                meerOpties = false;
+                            }
+                        }
+                        behandeldeCategorieen.add(categorie);
+                    }
                 }
             }
         } catch (IOException | ParseException e) {
             System.err.println(
-                "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
-                System.exit(0);
+                    "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+            System.exit(0);
         }
         return geselecteerdeOpties;
     }
