@@ -171,18 +171,43 @@ public class OptiesInvoer implements OptieValidatie {
     }
 
     private void selecteerMeerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
-            String categorie) {
-        if (!behandeldeCategorieen.contains(categorie)) {
+                                     String categorie) {
+        if (!behandeldeCategorieen.contains(categorie) && vraagExtraOpties(categorie)) {
             boolean meerOpties = true;
             while (meerOpties) {
-                geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties()));
-                System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
-                String meerOptiesAntwoord = input.nextLine().toLowerCase();
-                if (meerOptiesAntwoord.equals("nee")) {
-                    meerOpties = false;
-                }
+                Opties geselecteerdeOptie = kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties());
+                geselecteerdeOpties.add(geselecteerdeOptie);
+
+                meerOpties = vraagMeerOpties(categorie);
             }
-            behandeldeCategorieen.add(categorie);
+        }
+        behandeldeCategorieen.add(categorie);
+    }
+    private boolean vraagExtraOpties(String categorie) {
+        System.out.println("Wilt u " + categorie + " opties kiezen? (ja / nee)");
+        while (true) {
+            String extraOptiesAntwoord = input.nextLine().toLowerCase();
+            if (extraOptiesAntwoord.equals("ja")) {
+                return true;
+            } else if (extraOptiesAntwoord.equals("nee")) {
+                return false;
+            } else {
+                System.out.println("Ongeldig antwoord. Voer alstublieft 'ja' of 'nee' in.");
+            }
+        }
+    }
+
+    private boolean vraagMeerOpties(String categorie) {
+        System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
+        while (true) {
+            String meerOptiesAntwoord = input.nextLine().toLowerCase();
+            if (meerOptiesAntwoord.equals("ja")) {
+                return true;
+            } else if (meerOptiesAntwoord.equals("nee")) {
+                return false;
+            } else {
+                System.out.println("Ongeldig antwoord. Voer alstublieft 'ja' of 'nee' in.");
+            }
         }
     }
 
