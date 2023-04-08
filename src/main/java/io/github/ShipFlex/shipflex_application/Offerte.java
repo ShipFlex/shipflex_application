@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Offerte {
+public class Offerte extends OptiesInvoer {
     private Klant klant;
     private List<Opties> gekozenOpties;
 
@@ -31,6 +31,7 @@ public class Offerte {
 
     // methode die de uiteindelijk offerte print
     public void printOfferte() {
+        printBedrijfsGegevens();
         System.out.println("\n" + "---. Klantgegevens .---");
         System.out.println(
                 klant.getNaam() + "\n" +
@@ -41,5 +42,15 @@ public class Offerte {
                         klant.getEmailadres() + "\n" +
                         klant.getTelefoonnummer());
         klant.getExtraDetails();
+
+        System.out.println("\n" + "---. Offerte .---");
+
+        
+        
+        
+
+
+
+
     }
 }
