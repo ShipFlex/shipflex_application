@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String args[]) throws IOException {
-        // String outputFile = "B:/Java/shipflex_application/output_offerte.txt";
+        
         KlantInvoer klantInvoer = new KlantInvoer();
         Klant klant = klantInvoer.getKlantGegevens();
 
@@ -21,7 +21,7 @@ class Main {
 
         System.out.println("");
 
-        Offerte of = new Offerte(klant);
+        Offerte of = new Offerte(klant, oi);
         of.printOfferte();
     }
 }

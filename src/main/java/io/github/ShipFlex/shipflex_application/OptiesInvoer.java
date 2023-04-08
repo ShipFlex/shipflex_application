@@ -34,6 +34,10 @@ public class OptiesInvoer implements OptieValidatie {
         return opties;
     }
 
+    public List<Opties> getGeselecteerdeOpties() {
+        return geselecteerdeOpties;
+    }
+
     @Override
     public void validatieKeuze() {
         System.err.println(
@@ -63,6 +67,7 @@ public class OptiesInvoer implements OptieValidatie {
                 Number prijsObj = (Number) optie.get("prijs");
                 Integer prijs = prijsObj.intValue();
                 opties.addEssentieleOpties(categorie, naam, prijs);
+                geselecteerdeOpties.add(opties);
             }
         } catch (IOException | ParseException e) {
             System.err.println(
@@ -85,6 +90,8 @@ public class OptiesInvoer implements OptieValidatie {
                 Number prijsObj = (Number) optie.get("prijs");
                 Integer prijs = prijsObj.intValue();
                 opties.addExtraOpties(categorie, naam, prijs);
+                geselecteerdeOpties.add(opties);
+
             }
         } catch (IOException | ParseException e) {
             validatieKeuze();
@@ -283,22 +290,16 @@ public class OptiesInvoer implements OptieValidatie {
         Integer korting;
         try {
             korting = Integer.parseInt(kortingInput);
-            optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
-            System.out.println("(Milieu) Korting van " + korting + "% toegepast op " + optie.getNaam());
-            System.out.printf(
-                    "De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
-
-            if (korting < 0 || korting > 100) {
-                System.out.println(
-                        "Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
-
-            } else {
+            if (korting >= 0 && korting <= 100) {
+                optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
+                System.out.println("(Milieu) Korting van " + korting + "% toegepast op " + optie.getNaam());
+                System.out.printf("De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is %.2f EUR%n", optie.getPrijs());
                 validKorting = true;
+            } else {
+                System.out.println("Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");
             }
-
         } catch (NumberFormatException e) {
-            System.out.println(
-                    "Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
+            System.out.println("Ongeldige kortingspercentage. Gelieve een numerieke waarde in te vullen");
         }
         return validKorting;
     }
