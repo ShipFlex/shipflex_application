@@ -144,6 +144,15 @@ public class OptiesInvoer implements OptieValidatie {
         return geselecteerdeOpties;
     }
 
+    int totaalPrijs = 0;
+
+    public int BerekenTotaalPrijs(Opties optie){
+        
+       totaalPrijs = totaalPrijs += optie.getPrijs(); 
+
+        return totaalPrijs;
+    }
+
     private void selecteerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
             JSONArray essentieleOpties) {
         for (Object o : essentieleOpties) {
@@ -153,7 +162,11 @@ public class OptiesInvoer implements OptieValidatie {
                 geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getEssentieleOpties()));
                 behandeldeCategorieen.add(categorie);
             }
+
+            
         }
+
+        
     }
 
     private void selecteerExtraOpties(Opties opties, List<Opties> geselecteerdeOpties,
@@ -246,6 +259,8 @@ public class OptiesInvoer implements OptieValidatie {
         return null;
     }
 
+    
+
     private void VoegKortingToe(Opties optie, Scanner s) {
         System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
         String antwoord = s.nextLine();
@@ -260,6 +275,11 @@ public class OptiesInvoer implements OptieValidatie {
                 validKorting = berekenKorting(optie, validKorting, kortingInput);
             }
         }
+
+        if (antwoord.equalsIgnoreCase("nee")){
+
+            System.out.println("De totaalprijs van de offerte is nu " + BerekenTotaalPrijs(optie) + "EUR");
+        }
     }
 
     private boolean berekenKorting(Opties optie, boolean validKorting, String kortingInput) {
@@ -268,8 +288,12 @@ public class OptiesInvoer implements OptieValidatie {
             korting = Integer.parseInt(kortingInput);
             optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
             System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
-            System.out.printf(
+            System.out.println(
                     "De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
+            System.out.println("De totaalprijs van de offerte is nu " + BerekenTotaalPrijs(optie) + "EUR");
+                
+
+                    
 
             if (korting < 0 || korting > 100) {
                 System.out.println(
