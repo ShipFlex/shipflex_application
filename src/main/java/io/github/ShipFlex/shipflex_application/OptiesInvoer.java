@@ -1,7 +1,6 @@
 // Package
 package main.java.io.github.ShipFlex.shipflex_application;
 
-import java.io.File;
 // Imports
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.io.File;
 
 // JSON.Simple Imports
 import org.json.simple.JSONArray;
@@ -121,10 +121,8 @@ public class OptiesInvoer implements OptieValidatie {
     }
 
     // Functie om de gebruiker zowel essentiële als extra opties te laten
-    // selecteren, het neemt een Opties object in en returned een List van Opties
-    // objecten.
-    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze
-    // vervolgens.
+    // selecteren, het neemt een Opties object in en returned een List van Opties objecten.
+    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze vervolgens.
     // Er wordt ook rekening gehouden met categorieën die al zijn verwerkt.
     public List<Opties> optiesJSON(Opties opties) {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
@@ -144,22 +142,29 @@ public class OptiesInvoer implements OptieValidatie {
         return geselecteerdeOpties;
     }
 
+    // Functie die itereert over een JSON array bestaande uit essentiele opties en vraagt de gebruiker om een
+    // optie te selecteren uit elke categorie die nog niet geselecteerd is.
     private void selecteerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
             JSONArray essentieleOpties) {
         for (Object o : essentieleOpties) {
             JSONObject optie = (JSONObject) o;
             String categorie = (String) optie.get("categorie");
             if (!behandeldeCategorieen.contains(categorie)) {
-                geselecteerdeOpties.add(kiesOptie("\nSelecteer " + categorie + ":", opties.getEssentieleOpties()));
+                geselecteerdeOpties
+                        .add(kiesOptie("\nSelecteer een optie uit de categorie '" + categorie.toUpperCase() + "'",
+                                opties.getEssentieleOpties()));
                 behandeldeCategorieen.add(categorie);
             }
         }
     }
 
+    // Functie die de gebruiker vraagt of er nog extra opties gekozen moeten worden, herhaalt vervolgens een JSON-array
+    // met extra opties en vraagt de gebruiker vervolgeens om een optie te selecteren uit elke categorie die nog niet
+    // geselecteerd is.
     private void selecteerExtraOpties(Opties opties, List<Opties> geselecteerdeOpties,
             Set<String> behandeldeCategorieen,
             JSONArray extraOpties) {
-        System.out.println("Wilt u extra opties kiezen? (ja / nee)");
+        System.out.println("\nWilt u extra opties kiezen? (ja / nee)");
         String keuze = input.nextLine().toLowerCase();
         if (keuze.equals("ja")) {
             for (Object o : extraOpties) {
@@ -170,12 +175,16 @@ public class OptiesInvoer implements OptieValidatie {
         }
     }
 
+    // Functie die de gebruiker vraagt om extra opties uit een specifieke categorie te selecteren
+    // totdat de gebruiker van de applicatie ervoor kiest om te stoppen.
     private void selecteerMeerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
-                                     String categorie) {
+            String categorie) {
         if (!behandeldeCategorieen.contains(categorie) && vraagExtraOpties(categorie)) {
             boolean meerOpties = true;
             while (meerOpties) {
-                Opties geselecteerdeOptie = kiesOptie("\nSelecteer " + categorie + " optie:", opties.getExtraOpties());
+                Opties geselecteerdeOptie = kiesOptie(
+                        "\nSelecteer een optie uit de categorie '" + categorie.toUpperCase() + "'",
+                        opties.getExtraOpties());
                 geselecteerdeOpties.add(geselecteerdeOptie);
 
                 meerOpties = vraagMeerOpties(categorie);
@@ -183,8 +192,10 @@ public class OptiesInvoer implements OptieValidatie {
         }
         behandeldeCategorieen.add(categorie);
     }
+
+    // Functie die vraagt of de gebruiker extra opties uit een specifieke categorie willen selecteren.
     private boolean vraagExtraOpties(String categorie) {
-        System.out.println("Wilt u " + categorie + " opties kiezen? (ja / nee)");
+        System.out.println("\nWilt u opties uit de categorie '" + categorie.toUpperCase() + "' kiezen? (ja / nee)");
         while (true) {
             String extraOptiesAntwoord = input.nextLine().toLowerCase();
             if (extraOptiesAntwoord.equals("ja")) {
@@ -192,13 +203,15 @@ public class OptiesInvoer implements OptieValidatie {
             } else if (extraOptiesAntwoord.equals("nee")) {
                 return false;
             } else {
-                System.out.println("Ongeldig antwoord. Voer alstublieft 'ja' of 'nee' in.");
+                System.out.println("Ongeldige invoer. Voer alstublieft 'ja' of 'nee' in.");
             }
         }
     }
 
+    // Functie die vraagt of de gebruiker meer extra opties uit een specifieke categorie willen selecteren.
     private boolean vraagMeerOpties(String categorie) {
-        System.out.println("Wilt u meer " + categorie + " opties? (ja / nee)");
+        System.out.println(
+                "\nWilt u meer opties uit deze categorie (" + categorie.toUpperCase() + ") kiezen? (ja / nee)");
         while (true) {
             String meerOptiesAntwoord = input.nextLine().toLowerCase();
             if (meerOptiesAntwoord.equals("ja")) {
@@ -206,11 +219,12 @@ public class OptiesInvoer implements OptieValidatie {
             } else if (meerOptiesAntwoord.equals("nee")) {
                 return false;
             } else {
-                System.out.println("Ongeldig antwoord. Voer alstublieft 'ja' of 'nee' in.");
+                System.out.println("Ongeldig invoer. Voer alstublieft 'ja' of 'nee' in.");
             }
         }
     }
 
+    // Vraagt de gebruiker om een optie te selecteren uit een lijst met optiest en retourneert de geselecteerde optie(s)
     public Opties kiesOptie(String prompt, Map<String, List<Opties>> opties) {
         Scanner s = new Scanner(System.in);
         Opties gekozenOptie = null;
@@ -235,6 +249,7 @@ public class OptiesInvoer implements OptieValidatie {
         return gekozenOptie;
     }
 
+    // Zoekt in een lijst met opies naar een opties met een overeenkomende naam en retourneert dit.
     private Opties zoekOptie(String input, Map<String, List<Opties>> opties) {
         for (List<Opties> optieList : opties.values()) {
             for (Opties optie : optieList) {
@@ -246,6 +261,8 @@ public class OptiesInvoer implements OptieValidatie {
         return null;
     }
 
+    // Methode vraagt of een bepaalde optie in aanmerking komt voor korting en zo ja, kan de gebruiker handmatig
+    // het kortinspercentage in voeren. Vervolgens wordt de methode berekenKorting gecalled.
     private void VoegKortingToe(Opties optie, Scanner s) {
         System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
         String antwoord = s.nextLine();
@@ -267,7 +284,7 @@ public class OptiesInvoer implements OptieValidatie {
         try {
             korting = Integer.parseInt(kortingInput);
             optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
-            System.out.println("Milieu-korting van " + korting + "% toegepast op " + optie.getNaam());
+            System.out.println("(Milieu) Korting van " + korting + "% toegepast op " + optie.getNaam());
             System.out.printf(
                     "De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is " + optie.getPrijs() + "EUR\n");
 
