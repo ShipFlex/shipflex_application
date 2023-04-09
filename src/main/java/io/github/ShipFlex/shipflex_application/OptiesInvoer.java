@@ -271,20 +271,28 @@ public class OptiesInvoer implements OptieValidatie {
     // Methode vraagt of een bepaalde optie in aanmerking komt voor korting en zo ja, kan de gebruiker handmatig
     // het kortinspercentage in voeren. Vervolgens wordt de methode berekenKorting gecalled.
     private void VoegKortingToe(Opties optie, Scanner s) {
-        System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
-        String antwoord = s.nextLine();
+        while (true) {
+            System.out.println("Komt deze optie in aanmerking voor korting? (ja / nee)");
+            String antwoord = s.nextLine().toLowerCase();
 
-        if (antwoord.equalsIgnoreCase("ja")) {
-            Integer korting = 0;
-            boolean validKorting = false;
-            while (!validKorting) {
-                System.out.print("Aantal procent korting voor deze optie is:  ");
-                String kortingInput = s.nextLine();
+            if (antwoord.equals("ja")) {
+                Integer korting = 0;
+                boolean validKorting = false;
+                while (!validKorting) {
+                    System.out.print("Aantal procent korting voor deze optie is:  ");
+                    String kortingInput = s.nextLine();
 
-                validKorting = berekenKorting(optie, validKorting, kortingInput);
+                    validKorting = berekenKorting(optie, validKorting, kortingInput);
+                }
+                break;
+            } else if (antwoord.equals("nee")) {
+                break;
+            } else {
+                System.out.println("Ongeldig invoer. Voer alstublieft 'ja' of 'nee' in.");
             }
         }
     }
+
 
     private boolean berekenKorting(Opties optie, boolean validKorting, String kortingInput) {
         Integer korting;
@@ -293,7 +301,7 @@ public class OptiesInvoer implements OptieValidatie {
             if (korting >= 0 && korting <= 100) {
                 optie.setPrijs(optie.getPrijs() * (100 - korting) / 100);
                 System.out.println("(Milieu) Korting van " + korting + "% toegepast op " + optie.getNaam());
-                System.out.printf("De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is %.2f EUR%n", optie.getPrijs());
+                System.out.printf("De nieuwe prijs van " + optie.getNaam().toUpperCase() + " is %.2f EUR%n", (double) optie.getPrijs());
                 validKorting = true;
             } else {
                 System.out.println("Ongeldig kortingspercentage. Voer een waarde tussen 0 en 100 in.");

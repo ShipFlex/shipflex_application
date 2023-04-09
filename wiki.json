@@ -1,0 +1,114 @@
+{
+    "wikiEssentieleOpties": [
+        {
+            "categorie": "Scheepstype",
+            "naam": "Catamaran",
+            "info": "Catamaran: is een scheepstype dat gekenmerkt wordt door een romp die bestaat uit twee parallelle drijvers met daartussen een verbindingsstructuur. Dit scheepstype wordt vaak gebruikt voor zeilboten en biedt een goede stabiliteit en wendbaarheid op het water.",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Jacht",
+            "info": "Jacht: is een scheepstype dat wordt gebruikt voor plezier- en sportactiviteiten op het water. Jachten zijn vaak uitgerust met luxe voorzieningen en kunnen worden gebruikt voor bijvoorbeeld zeilen, varen en vissen.",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Motorboot",
+            "info": "Motorboot: is een scheepstype dat wordt aangedreven door een motor en wordt gebruikt voor transport, plezier en sport op het water. Motorboten kunnen verschillende maten en stijlen hebben, van kleine speedboten tot grote jachten.",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Zeilboot",
+            "info": "Zeilboot: is een scheepstype dat wordt aangedreven door windenergie en wordt gebruikt voor recreatie en sport op het water. Zeilboten zijn er in verschillende maten en stijlen, van kleine dinghies tot grote zeegaande jachten.",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Aluminium",
+            "info": "Aluminium: is een rompmateriaal dat licht en sterk is en daarom vaak wordt gebruikt voor snelle boten en zeiljachten. Aluminiumrompen zijn bestand tegen corrosie en kunnen lange tijd meegaan.",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Staal",
+            "info": "Staal: is een rompmateriaal dat duurzaam en sterk is en daarom vaak wordt gebruikt voor grotere boten en zeegaande jachten. Staalrompen zijn bestand tegen ruwe zeeomstandigheden en hebben een lange levensduur.",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Hout",
+            "info": "Hout: is een traditioneel rompmateriaal dat wordt gebruikt voor klassieke boten en jachten. Houten rompen zijn mooi om te zien en kunnen goed bestand zijn tegen zeeomstandigheden, maar vereisen vaak wel regelmatig onderhoud.",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Plastic",
+            "info": "Plastic: is een rompmateriaal dat licht, sterk en duurzaam is en daarom vaak wordt gebruikt voor kleine boten en jachten. Plasticrompen zijn bestand tegen corrosie en kunnen lange tijd meegaan.",
+            "prijs": 20000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Hydraulisch",
+            "info": "Hydraulisch: is een type stuurinrichting dat gebruik maakt van hydraulische vloeistof om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Hydraulische stuurinrichtingen zijn nauwkeurig en krachtig en worden vaak gebruikt op grotere boten en jachten.",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Elektrisch",
+            "info": "Elektrisch: is een type stuurinrichting dat gebruik maakt van elektrische actuatoren om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Elektrische stuurinrichtingen zijn efficiënt en nauwkeurig en worden vaak gebruikt op kleinere boten en jachten.",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Stuurinrichting",
+            "naam": "Mechanisch",
+            "info": "Mechanisch: is een type stuurinrichting dat gebruik maakt van mechanische verbindingen om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Mechanische stuurinrichtingen zijn betrouwbaar en gemakkelijk te onderhouden en worden vaak gebruikt op kleine boten en jachten.",
+            "prijs": 30000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Diesel",
+            "info": "Diesel: is een type motortype dat gebruik maakt van dieselbrandstof als brandstof. Diesel-aangedreven motoren zijn vaak zwaarder en minder krachtig dan benzine-aangedreven motoren, maar zijn efficiënter en hebben meer koppel.",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Benzine",
+            "info": "Benzine: is een type motortype dat gebruik maakt van benzinebrandstof. Benzine-aangedreven motoren zijn vaak lichter en hebben een hoger vermogen dan diesel-aangedreven motoren, maar zijn minder zuinig.",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Elektrisch",
+            "info": "Elektrisch: is een type motortype dat gebruik maakt van elektriciteit om de boot aan te drijven. Elektrische motoren zijn stil, milieuvriendelijk en hebben weinig onderhoud nodig, maar hebben vaak wel beperkte actieradius.",
+            "prijs": 40000
+        }
+    ],
+    "wikiExtraOpties": [
+        {
+            "categorie": "Stoelen",
+            "naam": "Leer",
+            "info": "Leer: is een type stoelbekleding dat wordt gebruikt om de stoelen op de boot comfortabeler en luxueuzer te maken. Leren stoelen zijn duurzaam en gemakkelijk schoon te maken en worden vaak gebruikt op jachten en andere luxe boten.",
+            "prijs": 50000
+        },
+        {
+            "categorie": "Stoelen",
+            "naam": "Verwarmde stoelen",
+            "info": "Verwarmde stoelen: is een extra optie waarbij de stoelen worden uitgerust met verwarmingsfuncties voor extra comfort tijdens koud weer.",
+            "prijs": 50000
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "GPS",
+            "info": "GPS: is een extra optie waarbij een GPS-module wordt toegevoegd aan het schip, zodat de locatie en positie van het schip altijd nauwkeurig kan worden bepaald.",
+            "prijs": 500.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Kaartupdates",
+            "info": "Kaartupdates: is een extra optie waarbij regelmatig updates van de navigatiekaarten worden geïnstalleerd, zodat de schipper altijd de meest recente informatie heeft over de vaarroutes en waterwegen.",
+            "prijs": 250.0
+        }
+    ]
+}
