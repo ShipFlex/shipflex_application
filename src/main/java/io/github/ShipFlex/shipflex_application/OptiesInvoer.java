@@ -274,16 +274,26 @@ public class OptiesInvoer implements OptieValidatie {
     // Methode vraagt of een bepaalde optie in aanmerking komt voor korting en zo ja, kan de gebruiker handmatig
     // het kortinspercentage in voeren. Vervolgens wordt de methode berekenKorting gecalled.
     private void VoegKortingToe(Opties optie, Scanner s) {
+        String antwoord = "";
+        boolean validAntwoord = false;
+        while (!validAntwoord) {
         System.out.println("Komt deze optie in aanmerking voor korting? (Ja/Nee)");
-        String antwoord = s.nextLine();
-
+        antwoord = s.nextLine();
+        
+            if (antwoord.equalsIgnoreCase("ja") || antwoord.equalsIgnoreCase("nee")) {
+                validAntwoord = true;
+            } else {
+                System.out.println("Ongeldige keuze, kies Ja of Nee!");
+            }
+        }
+        
         if (antwoord.equalsIgnoreCase("ja")) {
             Integer korting = 0;
             boolean validKorting = false;
             while (!validKorting) {
                 System.out.print("Aantal procent korting voor deze optie is:  ");
                 String kortingInput = s.nextLine();
-
+        
                 validKorting = berekenKorting(optie, validKorting, kortingInput);
             }
         }
