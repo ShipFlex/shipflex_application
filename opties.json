@@ -2,95 +2,180 @@
     "essentieleOpties": [
         {
             "categorie": "Scheepstype",
+            "naam": "Sloep",
+            "prijs": 9000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Kotter",
+            "prijs": 12000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Trawler",
+            "prijs": 15000
+        },
+        {
+            "categorie": "Scheepstype",
             "naam": "Catamaran",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Jacht",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Motorboot",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Zeilboot",
-            "prijs": 10000
+            "prijs": 16000
         },
         {
             "categorie": "Romp",
-            "naam": "Aluminium",
+            "naam": "Composiet",
+            "prijs": 25000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Epoxy",
             "prijs": 20000
         },
         {
             "categorie": "Romp",
-            "naam": "Staal",
+            "naam": "Glasvezel",
             "prijs": 20000
         },
         {
             "categorie": "Romp",
-            "naam": "Hout",
-            "prijs": 20000
+            "naam": "Carbon",
+            "prijs": 25000
         },
         {
             "categorie": "Romp",
-            "naam": "Plastic",
+            "naam": "Polyester",
             "prijs": 20000
         },
         {
             "categorie": "Stuurinrichting",
-            "naam": "Hydraulisch",
-            "prijs": 30000
+            "naam": "Joystick",
+            "prijs": 35000
         },
         {
             "categorie": "Stuurinrichting",
-            "naam": "Elektrisch",
+            "naam": "Wheel",
             "prijs": 30000
         },
         {
-            "categorie": "Stuurinrichting",
-            "naam": "Mechanisch",
-            "prijs": 30000
+            "categorie": "Motortype",
+            "naam": "Outboard",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Pod",
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
             "naam": "Diesel",
-            "prijs": 40000
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
-            "naam": "Benzine",
-            "prijs": 40000
+            "naam": "Hybrid",
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
-            "naam": "Elektrisch",
-            "prijs": 40000
+            "naam": "Jet",
+            "prijs": 60000
         }
     ],
     "extraOpties": [
         {
             "categorie": "Stoelen",
-            "naam": "Leer",
+            "naam": "Ventilated seats",
+            "prijs": 60000
+        },
+        {
+            "categorie": "Stoelen",
+            "naam": "Memory seats",
             "prijs": 50000
         },
         {
             "categorie": "Stoelen",
-            "naam": "Verwarmde stoelen",
+            "naam": "Ventilated seats",
+            "prijs": 60000
+        },
+        {
+            "categorie": "Stoelen",
+            "naam": "Memory seats",
             "prijs": 50000
         },
         {
             "categorie": "Navigatie",
-            "naam": "GPS",
-            "prijs": 500.0
+            "naam": "Radar",
+            "prijs": 2000.0
         },
         {
             "categorie": "Navigatie",
-            "naam": "Kaartupdates",
-            "prijs": 250.0
+            "naam": "Satellite radio",
+            "prijs": 1500.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Autopilot",
+            "prijs": 1000.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Fishfinder",
+            "prijs": 500.0
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Generator",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Washing machine",
+            "prijs": 8000
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Airconditioning",
+            "prijs": 15000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Boat alarm",
+            "prijs": 3000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Life raft",
+            "prijs": 5000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Boat alarm",
+            "prijs": 3000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Life raft",
+            "prijs": 5000
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Radar",
+            "prijs": 2000.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Satellite radio",
+            "prijs": 1500.0
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Generator",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Washing machine",
+            "prijs": 8000
         }
     ]
 }
