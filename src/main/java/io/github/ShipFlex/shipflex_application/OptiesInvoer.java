@@ -131,8 +131,10 @@ public class OptiesInvoer implements OptieValidatie {
     }
 
     // Functie om de gebruiker zowel essentiële als extra opties te laten
-    // selecteren, het neemt een Opties object in en returned een List van Opties objecten.
-    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze vervolgens.
+    // selecteren, het neemt een Opties object in en returned een List van Opties
+    // objecten.
+    // Hierbij leest hij de JSON file uit en filtert alle categorieën en print deze
+    // vervolgens.
     // Er wordt ook rekening gehouden met categorieën die al zijn verwerkt.
     public List<Opties> optiesJSON(Opties opties) {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
@@ -152,7 +154,8 @@ public class OptiesInvoer implements OptieValidatie {
         return geselecteerdeOpties;
     }
 
-    // Functie die itereert over een JSON array bestaande uit essentiele opties en vraagt de gebruiker om een
+    // Functie die itereert over een JSON array bestaande uit essentiele opties en
+    // vraagt de gebruiker om een
     // optie te selecteren uit elke categorie die nog niet geselecteerd is.
     private void selecteerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
             JSONArray essentieleOpties) {
@@ -168,8 +171,10 @@ public class OptiesInvoer implements OptieValidatie {
         }
     }
 
-    // Functie die de gebruiker vraagt of er nog extra opties gekozen moeten worden, herhaalt vervolgens een JSON-array
-    // met extra opties en vraagt de gebruiker vervolgeens om een optie te selecteren uit elke categorie die nog niet
+    // Functie die de gebruiker vraagt of er nog extra opties gekozen moeten worden,
+    // herhaalt vervolgens een JSON-array
+    // met extra opties en vraagt de gebruiker vervolgeens om een optie te
+    // selecteren uit elke categorie die nog niet
     // geselecteerd is.
     private void selecteerExtraOpties(Opties opties, List<Opties> geselecteerdeOpties,
             Set<String> behandeldeCategorieen,
@@ -185,7 +190,8 @@ public class OptiesInvoer implements OptieValidatie {
         }
     }
 
-    // Functie die de gebruiker vraagt om extra opties uit een specifieke categorie te selecteren
+    // Functie die de gebruiker vraagt om extra opties uit een specifieke categorie
+    // te selecteren
     // totdat de gebruiker van de applicatie ervoor kiest om te stoppen.
     private void selecteerMeerOpties(Opties opties, List<Opties> geselecteerdeOpties, Set<String> behandeldeCategorieen,
             String categorie) {
@@ -203,7 +209,8 @@ public class OptiesInvoer implements OptieValidatie {
         behandeldeCategorieen.add(categorie);
     }
 
-    // Functie die vraagt of de gebruiker extra opties uit een specifieke categorie willen selecteren.
+    // Functie die vraagt of de gebruiker extra opties uit een specifieke categorie
+    // willen selecteren.
     private boolean vraagExtraOpties(String categorie) {
         System.out.println("\nWilt u opties uit de categorie '" + categorie.toUpperCase() + "' kiezen? (Ja/Nee)");
         while (true) {
@@ -218,7 +225,8 @@ public class OptiesInvoer implements OptieValidatie {
         }
     }
 
-    // Functie die vraagt of de gebruiker meer extra opties uit een specifieke categorie willen selecteren.
+    // Functie die vraagt of de gebruiker meer extra opties uit een specifieke
+    // categorie willen selecteren.
     private boolean vraagMeerOpties(String categorie) {
         System.out.println(
                 "\nWilt u meer opties uit deze categorie (" + categorie.toUpperCase() + ") kiezen? (Ja/Nee)");
@@ -234,7 +242,8 @@ public class OptiesInvoer implements OptieValidatie {
         }
     }
 
-    // Vraagt de gebruiker om een optie te selecteren uit een lijst met optiest en retourneert de geselecteerde optie(s)
+    // Vraagt de gebruiker om een optie te selecteren uit een lijst met optiest en
+    // retourneert de geselecteerde optie(s)
     public Opties kiesOptie(String prompt, Map<String, List<Opties>> opties) {
         Scanner s = new Scanner(System.in);
         Opties gekozenOptie = null;
@@ -259,7 +268,8 @@ public class OptiesInvoer implements OptieValidatie {
         return gekozenOptie;
     }
 
-    // Zoekt in een lijst met opies naar een opties met een overeenkomende naam en retourneert dit.
+    // Zoekt in een lijst met opies naar een opties met een overeenkomende naam en
+    // retourneert dit.
     private Opties zoekOptie(String input, Map<String, List<Opties>> opties) {
         for (List<Opties> optieList : opties.values()) {
             for (Opties optie : optieList) {
@@ -271,29 +281,31 @@ public class OptiesInvoer implements OptieValidatie {
         return null;
     }
 
-    // Methode vraagt of een bepaalde optie in aanmerking komt voor korting en zo ja, kan de gebruiker handmatig
-    // het kortinspercentage in voeren. Vervolgens wordt de methode berekenKorting gecalled.
+    // Methode vraagt of een bepaalde optie in aanmerking komt voor korting en zo
+    // ja, kan de gebruiker handmatig
+    // het kortinspercentage in voeren. Vervolgens wordt de methode berekenKorting
+    // gecalled.
     private void VoegKortingToe(Opties optie, Scanner s) {
         String antwoord = "";
         boolean validAntwoord = false;
         while (!validAntwoord) {
-        System.out.println("Komt deze optie in aanmerking voor korting? (Ja/Nee)");
-        antwoord = s.nextLine();
-        
+            System.out.println("Komt deze optie in aanmerking voor korting? (Ja/Nee)");
+            antwoord = s.nextLine();
+
             if (antwoord.equalsIgnoreCase("ja") || antwoord.equalsIgnoreCase("nee")) {
                 validAntwoord = true;
             } else {
                 System.out.println("Ongeldige keuze, kies Ja of Nee!");
             }
         }
-        
+
         if (antwoord.equalsIgnoreCase("ja")) {
             Integer korting = 0;
             boolean validKorting = false;
             while (!validKorting) {
                 System.out.print("Aantal procent korting voor deze optie is:  ");
                 String kortingInput = s.nextLine();
-        
+
                 validKorting = berekenKorting(optie, validKorting, kortingInput);
             }
         }
