@@ -15,7 +15,7 @@ public class BeginMenu {
     public BeginMenu() {
         this.invoer = new Scanner(System.in);
     }
-    public void start() {
+    public void start() throws IOException {
         int menuOptie;
         do {
             menuOptie = welkomsBericht();
@@ -40,8 +40,16 @@ public class BeginMenu {
 
                 System.out.println("");
 
-                Offerte of = new Offerte(klant,oi);
-                of.printOfferte();
+                // vraagt de gebruiker of de offerte extern geschreven moet worden
+                System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
+                String invoerString = invoer.nextLine();
+                boolean printToFile = invoerString.equalsIgnoreCase("ja");
+
+                Offerte of = new Offerte(klant, oi);
+                of.printOfferte(printToFile);
+
+                // print to console
+                of.printOfferte(false);
             }
 
         } while (menuOptie != 4);
