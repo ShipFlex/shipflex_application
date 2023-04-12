@@ -45,7 +45,7 @@ public class KlantInvoer {
     public Klant getKlantGegevens() {
         int keuze;
         while (true) {
-            System.out.println("Welk type klant heeft u?");
+            System.out.println("\nWelk type klant heeft u?");
             System.out.println("1. Particulier   2. Bedrijf   3. Anders");
             System.out.println("---------------------------------------");
 
@@ -62,9 +62,10 @@ public class KlantInvoer {
             System.out.println("Ongeldige keuze, kies 1, 2 of 3!");
         }
 
+        System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
+
         if (keuze == 1) {
             // Begin vragenlijst Particulier
-            System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
             String naam = getCapitalizedInput("Voer de naam van de klant in: ");
             String adres = getCapitalizedInput("Voer het adres van de klant in: ");
             String postcode = getValidInput("Voer de postcode van de klant in: ");
