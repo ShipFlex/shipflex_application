@@ -34,11 +34,22 @@ public class KlantInvoer {
         String input;
         do {
             input = getValidInput(prompt);
-            input = input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
-            if (input.trim().isEmpty()) {
+            String[] words = input.trim().split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String word : words) {
+                if (word.length() > 0) {
+                    sb.append(Character.toUpperCase(word.charAt(0)));
+                    if (word.length() > 1) {
+                        sb.append(word.substring(1).toLowerCase());
+                    }
+                    sb.append(" ");
+                }
+            }
+            input = sb.toString().trim();
+            if (input.isEmpty()) {
                 System.out.println("Dit veld mag niet leeg zijn!");
             }
-        } while (input.trim().isEmpty());
+        } while (input.isEmpty());
         return input;
     }
 

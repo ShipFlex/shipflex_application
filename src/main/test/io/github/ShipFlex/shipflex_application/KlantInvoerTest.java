@@ -48,7 +48,21 @@ public class KlantInvoerTest {
     }
 
     /*
-     * De derde test van deze classe controleert of de functie 'getKlantGegevens'
+     * De derde test van deze classe controleert of de functie 'getCapitalizedInput'
+     * correct werkt en dus de eerste
+     */
+    @Test
+    public void getCapitalizedInput() {
+        Scanner scanner = new Scanner("john doe");
+        KlantInvoer klantInvoer = new KlantInvoer(scanner);
+        String prompt = "Enter your name: ";
+        String expected = "John Doe";
+        String actual = klantInvoer.getCapitalizedInput(prompt);
+        assertEquals(expected, actual);
+    }
+
+    /*
+     * De vierde test van deze classe controleert of de functie 'getKlantGegevens'
      * correct werkt voor een
      * object van het type Particulier. Deze test zorgt ervoor dat het programma de
      * details (in dit geval
@@ -72,7 +86,7 @@ public class KlantInvoerTest {
     }
 
     /*
-     * De vierde test controleert of de functie 'getKlantGegevens' correct werkt
+     * De vijfde test controleert of de functie 'getKlantGegevens' correct werkt
      * voor een
      * object van het type Bedrijf. Deze test zorgt ervoor dat het programma de
      * details (in dit geval
