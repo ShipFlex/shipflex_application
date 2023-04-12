@@ -12,6 +12,8 @@ public class BeginMenu {
 
     private Scanner invoer;
 
+    private String filename = "B\\java\\brruh\\shipflex_application\\wiki.json";
+
     public BeginMenu() {
         this.invoer = new Scanner(System.in);
     }
@@ -22,6 +24,8 @@ public class BeginMenu {
 
             if (menuOptie == 1) {
                 // Implementeer hier de methode om klanttypes weer te geven
+
+            toonKlanttyppes(); 
             }
 
             if (menuOptie == 2) {
@@ -179,6 +183,14 @@ public class BeginMenu {
         }
     }
 
+    public void toonKlanttyppes(){
+
+        System.out.println("Dit zijn de huideige klantypes: ");
+        System.out.println("1. Particulier " + "/n"
+        + "2. Bedrijf " + "/n" + 
+        "3. Overige klanttypes die u zelf in kunt stellen");
+
+    }
 
     private String leesBestand() {
         StringBuilder sb = new StringBuilder();

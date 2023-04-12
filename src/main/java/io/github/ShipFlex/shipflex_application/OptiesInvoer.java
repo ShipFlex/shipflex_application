@@ -23,7 +23,7 @@ public class OptiesInvoer implements OptieValidatie {
     private Scanner input;
 
     // Pas de filepath aan voor het runnen!!
-    private String filename = "B:\\Java\\brruh\\shipflex_application\\opties.json";
+    private String filename = "B:\\Java\\brruh\\shipflex_application\\wiki.json";
 
     // Constructor
     public OptiesInvoer() {
