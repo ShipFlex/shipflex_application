@@ -12,14 +12,10 @@ public class BeginMenu {
 
     private Scanner invoer;
 
-    // Pas de filepath aan voor het runnen!!
-    private String filename = "B:\\Java\\brruh\\shipflex_application\\wiki.json";
-
     public BeginMenu() {
         this.invoer = new Scanner(System.in);
     }
-
-    public void start() {
+    public void start() throws IOException {
         int menuOptie;
         do {
             menuOptie = welkomsBericht();
@@ -44,25 +40,28 @@ public class BeginMenu {
 
                 System.out.println("");
 
-                // ask the user if they want to print to a file
+                // vraagt de gebruiker of de offerte extern geschreven moet worden
                 System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
                 String invoerString = invoer.nextLine();
                 boolean printToFile = invoerString.equalsIgnoreCase("ja");
 
                 Offerte of = new Offerte(klant, oi);
                 of.printOfferte(printToFile);
+
+                // print to console
+                of.printOfferte(false);
             }
 
         } while (menuOptie != 4);
     }
 
+
     public int welkomsBericht() {
         int optie;
         while (true) {
-            System.out.println("====. Welkom bij de OfferteGenerator van ShipFlex .====\n");
-            System.out.println("Selecteer hieronder wat u wilt doen:\n-----------------");
-            System.out.println(
-                    "1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
+            System.out.println("Welkom bij de OfferteGenerator van ShipFlex");
+            System.out.println("Selecteer hieronder wat u wilt doen:");
+            System.out.println("1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
 
             String invoerString = invoer.nextLine();
             try {
@@ -80,6 +79,7 @@ public class BeginMenu {
         }
         return optie;
     }
+
 
     private int valideerCategorieKeuze() {
         int gekozenCategorie = 0;
@@ -107,14 +107,14 @@ public class BeginMenu {
         JSONArray extraOptiesArray = jsonObject.getJSONArray("wikiExtraOpties");
 
         while (true) {
-            System.out.println("\nKies een categorie:\n-----------------");
+            System.out.println("Kies een categorie:");
             System.out.println("1. Scheepstype");
             System.out.println("2. Romp");
             System.out.println("3. Stuurinrichting");
             System.out.println("4. Motortype");
             System.out.println("5. Stoelen");
             System.out.println("6. Navigatie");
-            System.out.println("\n7. Terug naar hoofdmenu");
+            System.out.println("7. Terug naar hoofdmenu");
 
             int gekozenCategorie = valideerCategorieKeuze();
 
@@ -131,7 +131,7 @@ public class BeginMenu {
             }
 
             System.out.println();
-            System.out.println("\nSelecteer wat u wilt doen:\n-----------------");
+            System.out.println("Selecteer wat u wilt doen:");
             System.out.println("1. Terug naar hoofdmenu");
             System.out.println("2. Opnieuw categorie kiezen om verder informatie te lezen");
 
@@ -157,8 +157,9 @@ public class BeginMenu {
         }
     }
 
+
     private void toonOptiesPerCategorie(JSONArray optiesArray, int categorieIndex) {
-        String[] categorieen = { "Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie" };
+        String[] categorieen = {"Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie"};
         String gekozenCategorieNaam = categorieen[categorieIndex - 1];
 
         for (int i = 0; i < optiesArray.length(); i++) {
@@ -178,14 +179,15 @@ public class BeginMenu {
         }
     }
 
+
     private String leesBestand() {
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("wiki.json"))) {
             String regel;
             while ((regel = br.readLine()) != null) {
                 sb.append(regel);
             }
-        } catch (IOException e) {
+        } catch (IOException e ) {
 
         }
         return sb.toString();

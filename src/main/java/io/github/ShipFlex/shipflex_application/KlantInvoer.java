@@ -29,10 +29,23 @@ public class KlantInvoer {
         return input;
     }
 
+    // Functie om de eerste letter van een woord in hoofdletter te zetten
+    public String getCapitalizedInput(String prompt) {
+        String input;
+        do {
+            input = getValidInput(prompt);
+            input = input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+            if (input.trim().isEmpty()) {
+                System.out.println("Dit veld mag niet leeg zijn!");
+            }
+        } while (input.trim().isEmpty());
+        return input;
+    }
+
     public Klant getKlantGegevens() {
         int keuze;
         while (true) {
-            System.out.println("Welk type klant heeft u?");
+            System.out.println("\nWelk type klant heeft u?");
             System.out.println("1. Particulier   2. Bedrijf   3. Anders");
             System.out.println("---------------------------------------");
 
@@ -49,14 +62,15 @@ public class KlantInvoer {
             System.out.println("Ongeldige keuze, kies 1, 2 of 3!");
         }
 
+        System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
+
         if (keuze == 1) {
             // Begin vragenlijst Particulier
-            System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
-            String naam = getValidInput("Voer de naam van de klant in: ");
-            String adres = getValidInput("Voer het adres van de klant in: ");
+            String naam = getCapitalizedInput("Voer de naam van de klant in: ");
+            String adres = getCapitalizedInput("Voer het adres van de klant in: ");
             String postcode = getValidInput("Voer de postcode van de klant in: ");
-            String plaats = getValidInput("Voer de plaats van de klant in: ");
-            String land = getValidInput("Voer het land van de klant in: ");
+            String plaats = getCapitalizedInput("Voer de plaats van de klant in: ");
+            String land = getCapitalizedInput("Voer het land van de klant in: ");
             String emailadres = getValidInput("Voer het email van de klant in: ");
             String telefoonnummer = getValidInput("Voer het telefoonnummer van de klant in: ");
             String klantnummer = getValidInput("Voer het klantnummer van de klant in: ");
@@ -66,11 +80,11 @@ public class KlantInvoer {
         }
         if (keuze == 2) {
             // Begin vragenlijst Bedrijf
-            String bedrijfsnaam = getValidInput("Voer de naam van het bedrijf in: ");
-            String bedrijfsadres = getValidInput("Voer het adres van het bedrijf in: ");
+            String bedrijfsnaam = getCapitalizedInput("Voer de naam van het bedrijf in: ");
+            String bedrijfsadres = getCapitalizedInput("Voer het adres van het bedrijf in: ");
             String bedrijfspostcode = getValidInput("Voer de postcode van het bedrijf in: ");
-            String bedrijfsplaats = getValidInput("Voer de plaats van het bedrijf in: ");
-            String bedrijfsland = getValidInput("Voer het land van het bedrijf in: ");
+            String bedrijfsplaats = getCapitalizedInput("Voer de plaats van het bedrijf in: ");
+            String bedrijfsland = getCapitalizedInput("Voer het land van het bedrijf in: ");
             String bedrijfstelefoon = getValidInput("Voer het telefoonnummer van het bedrijf in: ");
             String bedrijfsemailadres = getValidInput("Voer het emailadres van het bedrijf in: ");
             String kvkNummer = getValidInput("Voer het KVK-nummer van het bedrijf in: ");
@@ -79,12 +93,12 @@ public class KlantInvoer {
         }
         // vragenlijst voor overige klanttypes
         if (keuze == 3) {
-            String klanttype = getValidInput("Voer het type klant in: ");
-            String naamtype = getValidInput("Voer de naam van de " + klanttype + " in: ");
-            String adrestype = getValidInput("Voer de adres van de " + klanttype + " in: ");
+            String klanttype = getCapitalizedInput("Voer het type klant in: ");
+            String naamtype = getCapitalizedInput("Voer de naam van de " + klanttype + " in: ");
+            String adrestype = getCapitalizedInput("Voer de adres van de " + klanttype + " in: ");
             String postcodetype = getValidInput("Voer de postcode van de " + klanttype + " in: ");
-            String plaatstype = getValidInput("Voer de postcode van de " + klanttype + " in: ");
-            String landtype = getValidInput("Voer het land van de " + klanttype + " in: ");
+            String plaatstype = getCapitalizedInput("Voer de postcode van de " + klanttype + " in: ");
+            String landtype = getCapitalizedInput("Voer het land van de " + klanttype + " in: ");
             String emailtype = getValidInput("Voer het emailadres van de " + klanttype + " in: ");
             String telefoonnummertype = getValidInput("Voer het telefoonnummer van de " + klanttype + " in: ");
             String typenummer = getValidInput("voer het " + klanttype + "code in van de " + klanttype + " in: ");
@@ -92,7 +106,6 @@ public class KlantInvoer {
             return new OverigeType(klanttype, naamtype, adrestype, postcodetype, plaatstype, landtype, emailtype,
                     telefoonnummertype,
                     typenummer);
-
         }
         return null;
     }

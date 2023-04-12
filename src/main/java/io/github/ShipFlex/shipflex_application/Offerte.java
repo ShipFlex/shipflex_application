@@ -5,6 +5,7 @@ package main.java.io.github.ShipFlex.shipflex_application;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,6 @@ public class Offerte {
         this.optiesInvoer = optiesInvoer;
         this.gekozenOpties = new ArrayList<>();
 
-    }
-
-    // Getter
-    public List<Opties> getGekozenOpties() {
-        return gekozenOpties;
     }
 
     public void addOptie(Opties optie) {
@@ -64,25 +60,28 @@ public class Offerte {
         return totalePrijs;
     }
 
-    public void printOfferte(boolean printToFile) {
-        // print to console
-        printOfferte(new PrintWriter(System.out));
+    public void printOfferte(boolean printToFile) throws IOException {
+        try {
+            // print naar console
+            PrintWriter writer;
 
-        if (printToFile) {
-            try {
-                // Maak een PrintWrite object aan om de offerte naar een file te 'writen'
-                PrintWriter writer = new PrintWriter("offerte.txt", "UTF-8");
+            if (printToFile) {
+                writer = new PrintWriter(new FileWriter("offerte.txt"));
+            // } else {
+            //     writer = new PrintWriter(new OutputStreamWriter(System.out));
+            // }
 
-                // print de offerte naar de file
-                printOfferte(writer);
+            printOfferte(writer);
 
-                System.out.println("Offerte is succesvol opgeslagen in offerte.txt!");
-                // sluit de writer om de changes te saven
-                writer.close();
-            } catch (IOException e) {
-                System.out.println("Er is een fout opgetreden bij het opslaan van de offerte.");
-                e.printStackTrace();
+            // flush en sluit de writer
+            writer.flush();
+            writer.close();
+            
             }
+
+        } catch (IOException e) {
+            System.err.println("Fout bij het afdrukken van offerte: " + e.getMessage());
+            throw e;
         }
     }
 
