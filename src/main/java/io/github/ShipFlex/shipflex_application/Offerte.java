@@ -5,6 +5,7 @@ package main.java.io.github.ShipFlex.shipflex_application;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +22,37 @@ public class Offerte {
 
     }
 
+    // Getter
+    public List<Opties> getGekozenOpties() {
+        return gekozenOpties;
+    }
+
     public void addOptie(Opties optie) {
         this.gekozenOpties.add(optie);
+    }
+
+    // methode die de bedrijfsgegevens returned als String
+    private String getBedrijfsGegevens() {
+        String bedrijfsGegevens = "==== Bedrijfsgegevens ====" + "\n"
+                + "MyCompany \n" + "Voorbeeldstraat 3 \n" + "0101AB \n" +
+                "Den Haag \n" + "MyCompany.org" + "0102 0304 \n";
+
+        return bedrijfsGegevens;
+    }
+
+    // methode die alle gegevens returned als String
+    private String getTotaleGegevens() {
+        String totaleGegevens = getBedrijfsGegevens() +
+                "\n" + "==== Klantgegevens ====" + "\n" + klant.getNaam() + "\n" +
+                klant.getAdres() + "\n" +
+                klant.getPostcode() + "\n" +
+                klant.getPlaats() + "\n" +
+                klant.getLand() + "\n" +
+                klant.getEmailadres() + "\n" +
+                klant.getTelefoonnummer();
+        klant.getExtraDetails();
+
+        return totaleGegevens;
     }
 
     public int berekenTotalePrijs() {
@@ -34,36 +64,38 @@ public class Offerte {
         return totalePrijs;
     }
 
-    private void printBedrijfsGegevens() {
-        System.out.println("\n" + "---. Bedrijfsgegevens .---");
-        System.out.println("MyCompany \n" + "Voorbeeldstraat 3 \n" + "0101AB \n" +
-                "Den Haag \n" + "MyCompany.org" + "0102 0304 \n");
+    public void printOfferte(boolean printToFile) {
+        // print to console
+        printOfferte(new PrintWriter(System.out));
+
+        if (printToFile) {
+            try {
+                // Maak een PrintWrite object aan om de offerte naar een file te 'writen'
+                PrintWriter writer = new PrintWriter("offerte.txt", "UTF-8");
+
+                // print de offerte naar de file
+                printOfferte(writer);
+
+                System.out.println("Offerte is succesvol opgeslagen in offerte.txt!");
+                // sluit de writer om de changes te saven
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("Er is een fout opgetreden bij het opslaan van de offerte.");
+                e.printStackTrace();
+            }
+        }
     }
 
-    // methode die de uiteindelijk offerte print
-    public void printTotaleGegevens() {
-        printBedrijfsGegevens();
+    private void printOfferte(PrintWriter writer) {
+        // print de klant- en bedrijfsgegevens
+        writer.println(getTotaleGegevens());
 
-        System.out.println("\n" + "---. Klantgegevens .---");
-        System.out.println(
-                klant.getNaam() + "\n" +
-                        klant.getAdres() + "\n" +
-                        klant.getPostcode() + "\n" +
-                        klant.getPlaats() + "\n" +
-                        klant.getLand() + "\n" +
-                        klant.getEmailadres() + "\n" +
-                        klant.getTelefoonnummer());
-        klant.getExtraDetails();
-    }
-
-    public void printOfferte() {
-        printTotaleGegevens();
-
-        System.out.println("=============================================================");
-        System.out.println("                        ~~ OFFERTE ~~                        ");
-        System.out.println("=============================================================");
-        System.out.printf("%-22s %7s %8s %12s%n", "Beschrijving", "BTW%", "BTW", "Prijs");
-        System.out.println("-------------------------------------------------------------");
+        // print de offerte
+        writer.println("\n\n=============================================================");
+        writer.println("                        ~~ OFFERTE ~~                        ");
+        writer.println("=============================================================");
+        writer.printf("%-22s %7s %8s %12s%n", "Beschrijving", "BTW%", "BTW", "Prijs");
+        writer.println("-------------------------------------------------------------");
 
         double totalePrijsExclBtw = 0;
 
@@ -73,9 +105,10 @@ public class Offerte {
                 double prijsExclBtw = optie.getPrijs() / 1.21;
                 String btw = "21%";
                 double totalePrijsInclBtw = optie.getPrijs();
-    
-                System.out.printf("%-22s %7s %8.2f EUR %10.2f EUR%n", optie.getNaam(),btw, prijsExclBtw, totalePrijsInclBtw);
-    
+
+                writer.printf("%-22s %7s %8.2f EUR %10.2f EUR%n", optie.getNaam(), btw, prijsExclBtw,
+                        totalePrijsInclBtw);
+
                 totalePrijsExclBtw += prijsExclBtw;
             }
         }
@@ -83,10 +116,10 @@ public class Offerte {
         double totaleBtw = berekenTotalePrijs() - totalePrijsExclBtw;
         double totalePrijsInclBtw = berekenTotalePrijs();
 
-        System.out.println("-------------------------------------------------------------");
-        System.out.printf("%-45s %8.2f EUR%n", "Totaal excl. BTW:", totalePrijsExclBtw);
-        System.out.printf("%-45s %8.2f EUR%n", "BTW:", totaleBtw);
-        System.out.printf("\n%-45s %8.2f EUR%n", "Totaal incl. BTW:", totalePrijsInclBtw);
-        System.out.println("=============================================================");
+        writer.println("-------------------------------------------------------------");
+        writer.printf("%-45s %8.2f EUR%n", "Totaal excl. BTW:", totalePrijsExclBtw);
+        writer.printf("%-45s %8.2f EUR%n", "BTW:", totaleBtw);
+        writer.printf("\n%-45s %8.2f EUR%n", "Totaal incl. BTW:", totalePrijsInclBtw);
+        writer.println("=============================================================");
     }
 }
