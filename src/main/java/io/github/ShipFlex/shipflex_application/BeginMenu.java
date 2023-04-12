@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -45,12 +46,16 @@ public class BeginMenu {
                 System.out.println("");
 
                 // ask the user if they want to print to a file
-                System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
+                System.out.println("* Wilt u de offerte opslaan in een tekstbestand? (Ja/Nee) *");
                 String invoerString = invoer.nextLine();
                 boolean printToFile = invoerString.equalsIgnoreCase("ja");
 
                 Offerte of = new Offerte(klant, oi);
                 of.printOfferte(printToFile);
+
+                if (!printToFile) {
+                    of.printOfferte(new PrintWriter(System.out));
+                }
             }
 
         } while (menuOptie != 4);

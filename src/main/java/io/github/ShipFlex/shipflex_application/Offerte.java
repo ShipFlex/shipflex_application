@@ -2,8 +2,6 @@
 package main.java.io.github.ShipFlex.shipflex_application;
 
 // Imports
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -83,10 +81,13 @@ public class Offerte {
                 System.out.println("Er is een fout opgetreden bij het opslaan van de offerte.");
                 e.printStackTrace();
             }
+        } else {
+            // print naar console
+            printOfferte(new PrintWriter(System.out));
         }
     }
 
-    private void printOfferte(PrintWriter writer) {
+    void printOfferte(PrintWriter writer) {
         // print de klant- en bedrijfsgegevens
         writer.println(getTotaleGegevens());
 
