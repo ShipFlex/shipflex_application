@@ -12,7 +12,7 @@ public class BeginMenu {
 
     private Scanner invoer;
 
-    private String filename = "B\\java\\brruh\\shipflex_application\\wiki.json";
+    private String filename = "C:\\Users\\Mustafa\\Desktop\\shipflex_application\\wiki.json";
 
     public BeginMenu() {
         this.invoer = new Scanner(System.in);
