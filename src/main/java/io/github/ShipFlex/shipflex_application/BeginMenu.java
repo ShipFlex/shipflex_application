@@ -102,24 +102,14 @@ public class BeginMenu {
     private void toonUitgebreideOptielijst() {
         String jsonData = leesBestand();
         JSONObject jsonObject = new JSONObject(jsonData);
-
         JSONArray essentieleOptiesArray = jsonObject.getJSONArray("wikiEssentieleOpties");
         JSONArray extraOptiesArray = jsonObject.getJSONArray("wikiExtraOpties");
 
         while (true) {
-            System.out.println("Kies een categorie:");
-            System.out.println("1. Scheepstype");
-            System.out.println("2. Romp");
-            System.out.println("3. Stuurinrichting");
-            System.out.println("4. Motortype");
-            System.out.println("5. Stoelen");
-            System.out.println("6. Navigatie");
-            System.out.println("7. Terug naar hoofdmenu");
-
-            int gekozenCategorie = valideerCategorieKeuze();
+            int gekozenCategorie = toonCategorieMenu();
 
             if (gekozenCategorie == 7) {
-                break; // exit the while loop and go back to the main menu
+                break;
             }
 
             if (gekozenCategorie >= 1 && gekozenCategorie <= 4) {
@@ -130,25 +120,42 @@ public class BeginMenu {
                 toonOptiesPerCategorie(extraOptiesArray, gekozenCategorie);
             }
 
-            System.out.println();
-            System.out.println("Selecteer wat u wilt doen:");
-            System.out.println("1. Terug naar hoofdmenu");
-            System.out.println("2. Opnieuw categorie kiezen om verder informatie te lezen");
+            int actie = toonActieMenu();
 
+            if (actie == 1) {
+                break;
+            }
+        }
+    }
+
+    private int toonCategorieMenu() {
+        System.out.println("Kies een categorie:");
+        System.out.println("1. Scheepstype");
+        System.out.println("2. Romp");
+        System.out.println("3. Stuurinrichting");
+        System.out.println("4. Motortype");
+        System.out.println("5. Stoelen");
+        System.out.println("6. Navigatie");
+        System.out.println("7. Terug naar hoofdmenu");
+
+        return valideerCategorieKeuze();
+    }
+
+    private int toonActieMenu() {
+        System.out.println();
+        System.out.println("Selecteer wat u wilt doen:");
+        System.out.println("1. Terug naar hoofdmenu");
+        System.out.println("2. Opnieuw categorie kiezen om verder informatie te lezen");
+
+        while (true) {
             String invoerString = invoer.nextLine();
             try {
                 int optie = Integer.parseInt(invoerString);
 
                 if (optie < 1 || optie > 2) {
                     System.out.println("Ongeldige invoer, probeer opnieuw!");
-                }
-
-                if (optie == 1) {
-                    break; // exit the while loop and go back to the main menu
-                }
-
-                if (optie == 2) {
-                    continue; // continue the while loop and ask for a category again
+                } else {
+                    return optie;
                 }
 
             } catch (NumberFormatException e) {
