@@ -2,113 +2,167 @@
     "wikiEssentieleOpties": [
         {
             "categorie": "Scheepstype",
+            "naam": "Sloep",
+            "info": "Een sloep is een open, meestal motor-aangedreven boot die populair is bij zowel beginners als ervaren watersporters. Door het compacte formaat en de eenvoudige bediening zijn sloepen ideaal voor ontspannen vaartochten, watersporten en vissen op meren, rivieren en kanalen. Ze zijn ook gemakkelijk te vervoeren en te onderhouden, wat bijdraagt aan hun aantrekkingskracht.",
+            "prijs": 9000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Kotter",
+            "info": "Kotters zijn oorspronkelijk ontworpen voor de visserij, maar zijn tegenwoordig populair als pleziervaartuigen vanwege hun karakteristieke en tijdloze ontwerp. Ze hebben een diepe, ronde romp en een hoge boeg, waardoor ze stabiel en zeewaardig zijn, zelfs in ruwere wateren. Kotters zijn vaak uitgerust met een ruime kajuit, wat zorgt voor comfort en beschutting tijdens langere reizen of het varen in slechtere weersomstandigheden.",
+            "prijs": 12000
+        },
+        {
+            "categorie": "Scheepstype",
+            "naam": "Trawler",
+            "info": "Trawlers zijn ontworpen voor lange afstanden, efficiëntie en comfortabel verblijf aan boord. Ze hebben een langzaam verdringende romp, wat resulteert in een lager brandstofverbruik en een rustige, stabiele vaart. Trawlers zijn vaak voorzien van een grote kajuit met veel leefruimte en voorzieningen zoals een kombuis, slaapvertrekken en badkamers. Deze schepen zijn bij uitstek geschikt voor cruisen en het verkennen van afgelegen locaties, en zijn favoriet bij liveaboards en langdurige cruisers.",
+            "prijs": 15000
+        },
+        {
+            "categorie": "Scheepstype",
             "naam": "Catamaran",
-            "info": "Catamaran: is een scheepstype dat gekenmerkt wordt door een romp die bestaat uit twee parallelle drijvers met daartussen een verbindingsstructuur. Dit scheepstype wordt vaak gebruikt voor zeilboten en biedt een goede stabiliteit en wendbaarheid op het water.",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Jacht",
-            "info": "Jacht: is een scheepstype dat wordt gebruikt voor plezier- en sportactiviteiten op het water. Jachten zijn vaak uitgerust met luxe voorzieningen en kunnen worden gebruikt voor bijvoorbeeld zeilen, varen en vissen.",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Motorboot",
-            "info": "Motorboot: is een scheepstype dat wordt aangedreven door een motor en wordt gebruikt voor transport, plezier en sport op het water. Motorboten kunnen verschillende maten en stijlen hebben, van kleine speedboten tot grote jachten.",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Scheepstype",
-            "naam": "Zeilboot",
-            "info": "Zeilboot: is een scheepstype dat wordt aangedreven door windenergie en wordt gebruikt voor recreatie en sport op het water. Zeilboten zijn er in verschillende maten en stijlen, van kleine dinghies tot grote zeegaande jachten.",
-            "prijs": 10000
+            "info": "Een catamaran is een type schip met twee parallelle rompen, waardoor het breder en stabieler is dan een vergelijkbaar formaat monohull-schip. De dubbele romp zorgt voor een grotere leefruimte en een betere stabiliteit, wat resulteert in minder slingeren en rollen, zelfs in ruwe wateren. Catamarans zijn populair voor zowel zeilen als motorboten en zijn geschikt voor recreatief gebruik, zoals dagtochten, watersporten, vissen, en langdurig verblijf aan boord. Vanwege hun snelheid en stabiliteit worden ze vaak gebruikt voor lange reizen en oceaanoversteken.",
+            "prijs": 16000
         },
         {
             "categorie": "Romp",
-            "naam": "Aluminium",
-            "info": "Aluminium: is een rompmateriaal dat licht en sterk is en daarom vaak wordt gebruikt voor snelle boten en zeiljachten. Aluminiumrompen zijn bestand tegen corrosie en kunnen lange tijd meegaan.",
+            "naam": "Composiet",
+            "info": "Composietmaterialen zijn een combinatie van verschillende materialen, zoals vezels en harsen, die samenwerken om een lichtgewicht en duurzaam eindproduct te creëren. Composietrompen zijn bestand tegen corrosie, bieden een hoge sterkte-gewichtsverhouding en hebben een uitstekende slagvastheid. Composieten kunnen ook worden aangepast voor specifieke prestatie-eisen, zoals verbeterde stijfheid of sterkte.",
+            "prijs": 25000
+        },
+        {
+            "categorie": "Romp",
+            "naam": "Epoxy",
+            "info": "Epoxyhars is een thermohardende kunststof die, wanneer gecombineerd met vezels zoals glasvezel of koolstofvezel, een sterke en stijve composietstructuur vormt. Epoxyrompen zijn bestand tegen vocht, chemicaliën en UV-straling, wat resulteert in een langere levensduur en minder onderhoud. Epoxy is ook minder gevoelig voor osmose dan polyester, waardoor het risico op waterabsorptie en blaarvorming wordt verminderd.",
             "prijs": 20000
         },
         {
             "categorie": "Romp",
-            "naam": "Staal",
-            "info": "Staal: is een rompmateriaal dat duurzaam en sterk is en daarom vaak wordt gebruikt voor grotere boten en zeegaande jachten. Staalrompen zijn bestand tegen ruwe zeeomstandigheden en hebben een lange levensduur.",
+            "naam": "Glasvezel",
+            "info": "Glasvezel is een materiaal dat bestaat uit fijne glasvezels die met hars worden versterkt om een sterk en flexibel laminaat te vormen. Glasvezelrompen zijn relatief lichtgewicht, duurzaam en onderhoudsarm. Ze hebben een goede weerstand tegen corrosie en degradatie door UV-straling. Glasvezel wordt veel gebruikt in de scheepsbouw vanwege de gunstige eigenschappen en de betaalbaarheid.",
             "prijs": 20000
         },
         {
             "categorie": "Romp",
-            "naam": "Hout",
-            "info": "Hout: is een traditioneel rompmateriaal dat wordt gebruikt voor klassieke boten en jachten. Houten rompen zijn mooi om te zien en kunnen goed bestand zijn tegen zeeomstandigheden, maar vereisen vaak wel regelmatig onderhoud.",
-            "prijs": 20000
+            "naam": "Carbon",
+            "info": "Carbonvezel is een zeer sterk en stijf materiaal dat bestaat uit dunne koolstofvezels, die met hars worden versterkt om een composietstructuur te vormen. Carbonvezelrompen bieden een uitstekende sterkte-gewichtsverhouding en een hoge stijfheid, wat resulteert in betere prestaties en hogere snelheden. Carbonvezel is echter duurder dan andere materialen en kan minder goed bestand zijn tegen impactschade.",
+            "prijs": 25000
         },
         {
             "categorie": "Romp",
-            "naam": "Plastic",
-            "info": "Plastic: is een rompmateriaal dat licht, sterk en duurzaam is en daarom vaak wordt gebruikt voor kleine boten en jachten. Plasticrompen zijn bestand tegen corrosie en kunnen lange tijd meegaan.",
+            "naam": "Polyester",
+            "info": "Polyester is een thermohardende kunststof die veel wordt gebruikt in de scheepsbouw. Polyesterrompen zijn gemaakt door het combineren van polyesterhars met glasvezel, wat resulteert in een goede balans tussen sterkte, gewicht en duurzaamheid. Polyester is relatief betaalbaar en onderhoudsarm, maar kan gevoeliger zijn voor osmose en waterabsorptie dan andere materialen zoals epoxy.",
             "prijs": 20000
         },
         {
             "categorie": "Stuurinrichting",
-            "naam": "Hydraulisch",
-            "info": "Hydraulisch: is een type stuurinrichting dat gebruik maakt van hydraulische vloeistof om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Hydraulische stuurinrichtingen zijn nauwkeurig en krachtig en worden vaak gebruikt op grotere boten en jachten.",
-            "prijs": 30000
+            "naam": "Joystick",
+            "info": "Joystickbesturing is een geavanceerd stuurmechanisme dat het besturen van een schip eenvoudiger en intuïtiever maakt. Met een joystick kan de schipper het schip nauwkeurig en met minimale inspanning manoeuvreren, wat handig is bij het aanmeren, afmeren en navigeren in krappe ruimtes. Joystickbesturing kan worden geïntegreerd met motor- en boegschroefsystemen, wat resulteert in een gecoördineerde en vloeiende beweging van het schip in alle richtingen. Dit type besturing is vooral populair bij motorboten en kan het varen toegankelijker maken voor minder ervaren schippers.",
+            "prijs": 35000
         },
         {
             "categorie": "Stuurinrichting",
-            "naam": "Elektrisch",
-            "info": "Elektrisch: is een type stuurinrichting dat gebruik maakt van elektrische actuatoren om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Elektrische stuurinrichtingen zijn efficiënt en nauwkeurig en worden vaak gebruikt op kleinere boten en jachten.",
+            "naam": "Wheel",
+            "info": "Het traditionele stuurwiel is een tijdloos en betrouwbaar stuurmechanisme dat op de meeste schepen te vinden is. Het stuurwiel biedt de schipper directe controle over het roer, wat resulteert in een responsief en nauwkeurig stuurgedrag. Het stuurwiel geeft de schipper ook een goed gevoel voor de weerstand en kracht die nodig is om het roer te bewegen, wat nuttig kan zijn bij het anticiperen op de beweging van het schip en het aanpassen van de koers. Stuurwielen zijn gebruikelijk op zowel zeil- als motorboten en worden vaak geprefereerd door ervaren schippers vanwege het directe en vertrouwde gevoel van controle.",
             "prijs": 30000
         },
         {
-            "categorie": "Stuurinrichting",
-            "naam": "Mechanisch",
-            "info": "Mechanisch: is een type stuurinrichting dat gebruik maakt van mechanische verbindingen om de beweging van het stuurwiel over te brengen naar de roerinstallatie. Mechanische stuurinrichtingen zijn betrouwbaar en gemakkelijk te onderhouden en worden vaak gebruikt op kleine boten en jachten.",
-            "prijs": 30000
+            "categorie": "Motortype",
+            "naam": "Outboard",
+            "info": "Buitenboordmotoren zijn compacte, lichtgewicht motoren die aan de achterkant van het schip zijn bevestigd. Ze zijn gemakkelijk te onderhouden en bieden uitstekende prestaties, vooral voor kleinere boten. Buitenboordmotoren zijn meestal benzine-aangedreven, hoewel er ook elektrische opties beschikbaar zijn. Ze zijn eenvoudig te verwijderen en te vervangen, wat handig is voor onderhoud en reparaties.",
+            "prijs": 40000
+        },
+        {
+            "categorie": "Motortype",
+            "naam": "Pod",
+            "info": "Pod-aandrijvingen zijn inboard motoren met een geïntegreerde aandrijfunit die onder het schip uitsteekt. Ze bieden efficiënte en stille werking met verbeterde manoeuvreerbaarheid dankzij de mogelijkheid om de aandrijving 360 graden te draaien. Pod-aandrijvingen zijn geschikt voor zowel diesel- als benzinemotoren en zijn populair bij grotere motorjachten en cruiseschepen vanwege hun vermogen om brandstof te besparen en trillingen te minimaliseren.",
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
             "naam": "Diesel",
-            "info": "Diesel: is een type motortype dat gebruik maakt van dieselbrandstof als brandstof. Diesel-aangedreven motoren zijn vaak zwaarder en minder krachtig dan benzine-aangedreven motoren, maar zijn efficiënter en hebben meer koppel.",
-            "prijs": 40000
+            "info": "Inboard dieselmotoren zijn betrouwbaar en krachtig, waardoor ze geschikt zijn voor lange afstanden en zwaardere schepen. Dieselmotoren hebben over het algemeen een lager brandstofverbruik en langere levensduur dan benzinemotoren. Ze zijn echter over het algemeen zwaarder en duurder in aanschaf en onderhoud.",
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
-            "naam": "Benzine",
-            "info": "Benzine: is een type motortype dat gebruik maakt van benzinebrandstof. Benzine-aangedreven motoren zijn vaak lichter en hebben een hoger vermogen dan diesel-aangedreven motoren, maar zijn minder zuinig.",
-            "prijs": 40000
+            "naam": "Hybrid",
+            "info": "Hybride motoren combineren de voordelen van zowel diesel- als elektromotoren, waardoor ze een milieuvriendelijker alternatief bieden voor conventionele scheepsmotoren. In een hybride systeem kan de dieselmotor worden gebruikt om elektrische energie op te wekken en de batterijen op te laden, terwijl de elektromotor wordt gebruikt voor stille en emissievrije voortstuwing.",
+            "prijs": 50000
         },
         {
             "categorie": "Motortype",
-            "naam": "Elektrisch",
-            "info": "Elektrisch: is een type motortype dat gebruik maakt van elektriciteit om de boot aan te drijven. Elektrische motoren zijn stil, milieuvriendelijk en hebben weinig onderhoud nodig, maar hebben vaak wel beperkte actieradius.",
-            "prijs": 40000
+            "naam": "Jet",
+            "info": "Jet-aangedreven motoren maken gebruik van waterstralen in plaats van traditionele schroeven om het schip voort te stuwen. Een jetmotor zuigt water in via een inlaat en spuit het vervolgens met hoge snelheid uit door een uitlaat, waardoor het schip naar voren wordt geduwd. Jet-aangedreven schepen hebben uitstekende prestaties en manoeuvreerbaarheid, waaronder de mogelijkheid om snel te stoppen, achteruit te varen en strakke bochten te maken.",
+            "prijs": 60000
         }
     ],
     "wikiExtraOpties": [
         {
             "categorie": "Stoelen",
-            "naam": "Leer",
-            "info": "Leer: is een type stoelbekleding dat wordt gebruikt om de stoelen op de boot comfortabeler en luxueuzer te maken. Leren stoelen zijn duurzaam en gemakkelijk schoon te maken en worden vaak gebruikt op jachten en andere luxe boten.",
-            "prijs": 50000
+            "naam": "Ventilated seats",
+            "info": "Geventileerde stoelen zijn ontworpen om extra comfort te bieden tijdens het varen, vooral in warme klimaten of tijdens zomerse dagen. Ze zijn uitgerust met ingebouwde ventilatiekanalen en kleine ventilatoren die koele lucht door de zitting en rugleuning circuleren. ",
+            "prijs": 60000
         },
         {
             "categorie": "Stoelen",
-            "naam": "Verwarmde stoelen",
-            "info": "Verwarmde stoelen: is een extra optie waarbij de stoelen worden uitgerust met verwarmingsfuncties voor extra comfort tijdens koud weer.",
+            "naam": "Memory seats",
+            "info": "Geheugenstoelen zijn luxe stoelen die zijn uitgerust met elektronische geheugenfuncties om de voorkeursinstellingen van meerdere gebruikers op te slaan en automatisch aan te passen. Deze stoelen kunnen de positie, hoogte, hoek, en soms zelfs de lendensteun en hoofdsteun aanpassen, zodat elke bestuurder of passagier een persoonlijke en comfortabele zitervaring heeft.",
             "prijs": 50000
         },
         {
             "categorie": "Navigatie",
-            "naam": "GPS",
-            "info": "GPS: is een extra optie waarbij een GPS-module wordt toegevoegd aan het schip, zodat de locatie en positie van het schip altijd nauwkeurig kan worden bepaald.",
-            "prijs": 500.0
+            "naam": "Radar",
+            "info": "Een geavanceerd navigatiesysteem dat radiogolven gebruikt om de positie van nabijgelegen objecten te bepalen, wat de veiligheid en navigatie bij slecht zicht of in drukke wateren verbetert.",
+            "prijs": 2000.0
         },
         {
             "categorie": "Navigatie",
-            "naam": "Kaartupdates",
-            "info": "Kaartupdates: is een extra optie waarbij regelmatig updates van de navigatiekaarten worden geïnstalleerd, zodat de schipper altijd de meest recente informatie heeft over de vaarroutes en waterwegen.",
-            "prijs": 250.0
+            "naam": "Satellite radio",
+            "info": "Satellietradio biedt een breed scala aan radiozenders met muziek, nieuws, sport en entertainment, en zorgt voor een heldere en storingsvrije ontvangst, zelfs op grote afstand van land of in afgelegen gebieden.",
+            "prijs": 1500.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Autopilot",
+            "info": "Autopilotsystemen zijn ontworpen om de besturing van het schip te automatiseren, waardoor de schipper zich kan concentreren op andere aspecten van de navigatie, zoals het monitoren van radar, kaartplotters of communicatie met andere schepen.",
+            "prijs": 1000.0
+        },
+        {
+            "categorie": "Navigatie",
+            "naam": "Fishfinder",
+            "info": "Fishfinders zijn gespecialiseerde sonarapparaten die ontworpen zijn om vissen en andere onderwaterobjecten te detecteren. Ze werken door geluidsgolven uit te zenden en de echo's op te vangen die worden gereflecteerd door vissen, planten, de zeebodem en andere structuren. De ontvangen informatie wordt vervolgens omgezet in een visuele weergave op een scherm, waardoor de schipper de diepte, bodemstructuur en de aanwezigheid van vissen kan zien.",
+            "prijs": 500.0
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Generator",
+            "info": "Generatoren zorgen voor onafhankelijke stroomvoorziening aan boord, waardoor u kunt genieten van moderne gemakken zoals verlichting, keukenapparatuur en entertainment, zelfs wanneer u niet aangesloten bent op een walstroomaansluiting.",
+            "prijs": 10000
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Washing machine",
+            "info": "Met een ingebouwde wasmachine kunt u kleding en linnengoed aan boord wassen, wat bijdraagt aan het gemak en comfort tijdens langere reizen of wanneer u ver van de wal bent.",
+            "prijs": 8000
+        },
+        {
+            "categorie": "Comfort",
+            "naam": "Airconditioning",
+            "info": "Airconditioning zorgt voor een comfortabel binnenklimaat door de lucht te koelen en te ontvochtigen, wat vooral nuttig is in warme of vochtige klimaten.",
+            "prijs": 15000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Boat alarm",
+            "info": "Een bootalarm helpt bij het voorkomen van diefstal of inbraak door het detecteren van ongeautoriseerde toegang en het activeren van een hoorbaar en/of zichtbaar alarm om indringers af te schrikken en de eigenaar of autoriteiten te waarschuwen.",
+            "prijs": 3000
+        },
+        {
+            "categorie": "Veiligheid",
+            "naam": "Life raft",
+            "info": "Reddingsvlotten zijn essentiële veiligheidsuitrusting die snel kunnen worden ingezet in geval van nood, zoals bij zinken of brand, om een drijvend platform te bieden voor opvarenden totdat hulp arriveert.",
+            "prijs": 5000
         }
     ]
 }

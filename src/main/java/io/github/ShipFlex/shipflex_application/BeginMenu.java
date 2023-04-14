@@ -1,14 +1,16 @@
 package main.java.io.github.ShipFlex.shipflex_application;
 
 import java.util.Scanner;
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 public class BeginMenu {
 
@@ -69,7 +71,7 @@ public class BeginMenu {
         while (!isGeldigeInvoer) {
             try {
                 gekozenCategorie = Integer.parseInt(invoer.nextLine());
-                if (gekozenCategorie < 1 || gekozenCategorie > 7) {
+                if (gekozenCategorie < 1 || gekozenCategorie > 9) {
                     System.out.println("Ongeldige invoer, probeer opnieuw!");
                 } else {
                     isGeldigeInvoer = true;
@@ -82,23 +84,22 @@ public class BeginMenu {
     }
 
     private void toonUitgebreideOptielijst() {
-        String jsonData = leesBestand();
-        JSONObject jsonObject = new JSONObject(jsonData);
-        JSONArray essentieleOptiesArray = jsonObject.getJSONArray("wikiEssentieleOpties");
-        JSONArray extraOptiesArray = jsonObject.getJSONArray("wikiExtraOpties");
+        JSONObject jsonObject = leesJsonBestand("wiki.json");
+        JSONArray essentieleOptiesArray = (JSONArray) jsonObject.get("wikiEssentieleOpties");
+        JSONArray extraOptiesArray = (JSONArray) jsonObject.get("wikiExtraOpties");
 
         while (true) {
             int gekozenCategorie = toonCategorieMenu();
 
-            if (gekozenCategorie == 7) {
+            if (gekozenCategorie == 9) {
                 break;
             }
 
             if (gekozenCategorie >= 1 && gekozenCategorie <= 4) {
-                System.out.println("\nEssentiele opties:");
+                System.out.println("\nEssentiele opties:\n");
                 toonOptiesPerCategorie(essentieleOptiesArray, gekozenCategorie);
             } else {
-                System.out.println("\nExtra opties:");
+                System.out.println("\nExtra opties:\n");
                 toonOptiesPerCategorie(extraOptiesArray, gekozenCategorie);
             }
 
@@ -118,7 +119,9 @@ public class BeginMenu {
         System.out.println("4. Motortype");
         System.out.println("5. Stoelen");
         System.out.println("6. Navigatie");
-        System.out.println("7. Terug naar hoofdmenu");
+        System.out.println("7. Comfort");
+        System.out.println("8. Veiligheid");
+        System.out.println("9. Terug naar hoofdmenu");
 
         return valideerCategorieKeuze();
     }
@@ -146,38 +149,52 @@ public class BeginMenu {
         }
     }
 
+    private void printWrappedText(String text, int maxWidth) {
+        String[] words = text.split(" ");
+        String line = "";
+
+        for (String word : words) {
+            if (line.length() + word.length() + 1 > maxWidth) {
+                System.out.println(line);
+                line = "";
+            }
+            if (!line.isEmpty()) {
+                line += " ";
+            }
+            line += word;
+        }
+        if (!line.isEmpty()) {
+            System.out.println(line);
+        }
+    }
+
     private void toonOptiesPerCategorie(JSONArray optiesArray, int categorieIndex) {
-        String[] categorieen = { "Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie" };
+        String[] categorieen = {"Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie", "Comfort", "Veiligheid"};
         String gekozenCategorieNaam = categorieen[categorieIndex - 1];
 
-        for (int i = 0; i < optiesArray.length(); i++) {
-            JSONObject optie = optiesArray.getJSONObject(i);
-            if (optie.getString("categorie").equals(gekozenCategorieNaam)) {
-                String naam = optie.getString("naam");
-                String info = optie.getString("info");
-                double prijs = optie.getDouble("prijs");
-
-                String[] infoChunks = info.split("(?<=\\G.{60})");
+        for (int i = 0; i < optiesArray.size(); i++) {
+            JSONObject optie = (JSONObject) optiesArray.get(i);
+            if (optie.get("categorie").equals(gekozenCategorieNaam)) {
+                String naam = (String) optie.get("naam");
+                String info = (String) optie.get("info");
+                double prijs = ((Number) optie.get("prijs")).doubleValue();
 
                 System.out.println(naam + ": (Prijs: " + prijs + ")");
-                for (String chunk : infoChunks) {
-                    System.out.println("\t" + chunk);
-                }
+                printWrappedText("@" + info + "\n", 60);
             }
         }
     }
 
-    private String leesBestand() {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("wiki.json"))) {
-            String regel;
-            while ((regel = br.readLine()) != null) {
-                sb.append(regel);
-            }
-        } catch (IOException e) {
-
+    private JSONObject leesJsonBestand(String filename) {
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = null;
+        try (FileReader reader = new FileReader(filename)) {
+            jsonObject = (JSONObject) parser.parse(reader);
+        } catch (IOException | ParseException e) {
+            System.err.println("\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
+            System.exit(0);
         }
-        return sb.toString();
+        return jsonObject;
     }
 
     private void genereerOfferte() throws IOException {
