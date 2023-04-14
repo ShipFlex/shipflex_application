@@ -216,9 +216,12 @@ public class BeginMenu {
         String invoerString = invoer.nextLine();
         boolean printToFile = invoerString.equalsIgnoreCase("ja");
 
-        if ((!invoerString.equalsIgnoreCase("ja") ) || (!invoerString.equalsIgnoreCase("nee")))  {
+        while ((!invoerString.equalsIgnoreCase("ja") ) && (!invoerString.equalsIgnoreCase("nee")))  {
             System.out.println("Ongeldige invoer, probeer opnieuw!");
-             invoerString = invoer.nextLine();
+
+            System.out.println("Wilt u de offerte opslaan in een tekstbestand? (Ja/Nee)");
+         invoerString = invoer.nextLine();
+         printToFile = invoerString.equalsIgnoreCase("ja");
              }
 
         if (printToFile) {
@@ -240,10 +243,8 @@ public class BeginMenu {
 
     public void toonKlanttyppes(){
 
-        System.out.println("Dit zijn de huideige klantypes: ");
-        System.out.println("1. Particulier " + "/n"
-        + "2. Bedrijf " + "/n" + 
-        "3. Overige klanttypes die u zelf in kunt stellen");
+        System.out.println("1. Particulier \n2. Bedrijf \n3. Overige klanttypes die u zelf in kunt stellen");
+        System.out.println("");
 
     }
 }
