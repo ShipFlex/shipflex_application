@@ -22,8 +22,7 @@ public class OptiesInvoer implements OptieValidatie {
     private List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
     private Scanner input;
 
-    // Pas de filepath aan voor het runnen!!
-    private String filename = "/Users/saksagan86/Desktop/shipflex_application/opties.json";
+    private String filename = "opties.json";
 
     // Constructor
     public OptiesInvoer() {
@@ -63,15 +62,18 @@ public class OptiesInvoer implements OptieValidatie {
         try (FileReader reader = new FileReader(filename)) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
+            
             for (Object o : essentieleOpties) {
                 JSONObject optie = (JSONObject) o;
                 String categorie = (String) optie.get("categorie");
                 String naam = (String) optie.get("naam");
                 Number prijsObj = (Number) optie.get("prijs");
                 Integer prijs = prijsObj.intValue();
+
                 opties.addEssentieleOpties(categorie, naam, prijs);
                 geselecteerdeOpties.add(opties);
             }
+
         } catch (IOException | ParseException e) {
             System.err.println(
                     "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
@@ -86,16 +88,19 @@ public class OptiesInvoer implements OptieValidatie {
         try (FileReader reader = new FileReader(filename)) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
+            
             for (Object o : extraOpties) {
                 JSONObject optie = (JSONObject) o;
                 String categorie = (String) optie.get("categorie");
                 String naam = (String) optie.get("naam");
                 Number prijsObj = (Number) optie.get("prijs");
                 Integer prijs = prijsObj.intValue();
+               
                 opties.addExtraOpties(categorie, naam, prijs);
                 geselecteerdeOpties.add(opties);
 
             }
+
         } catch (IOException | ParseException e) {
             validatieKeuze();
         }
@@ -110,6 +115,7 @@ public class OptiesInvoer implements OptieValidatie {
         Map<String, List<Opties>> essentieleOpties = opties.getEssentieleOpties();
         for (String categorie : essentieleOpties.keySet()) {
             System.out.println("\n|" + categorie + "|");
+            
             for (Opties optie : essentieleOpties.get(categorie)) {
                 System.out.println("  - " + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
@@ -123,6 +129,7 @@ public class OptiesInvoer implements OptieValidatie {
         Map<String, List<Opties>> extraOpties = opties.getExtraOpties();
         for (String categorie : extraOpties.keySet()) {
             System.out.println("\n|" + categorie.toUpperCase() + "|");
+            
             for (Opties optie : extraOpties.get(categorie)) {
                 System.out.println("  - " + optie.getNaam() + " (" + optie.getPrijs() + " EUR)");
             }
@@ -140,12 +147,14 @@ public class OptiesInvoer implements OptieValidatie {
         List<Opties> geselecteerdeOpties = new ArrayList<Opties>();
         Set<String> behandeldeCategorieen = new HashSet<String>();
         JSONParser parser = new JSONParser();
+        
         try (FileReader reader = new FileReader(filename)) {
             JSONObject obj = (JSONObject) parser.parse(reader);
             JSONArray essentieleOpties = (JSONArray) obj.get("essentieleOpties");
             JSONArray extraOpties = (JSONArray) obj.get("extraOpties");
             selecteerOpties(opties, geselecteerdeOpties, behandeldeCategorieen, essentieleOpties);
             selecteerExtraOpties(opties, geselecteerdeOpties, behandeldeCategorieen, extraOpties);
+
         } catch (IOException | ParseException e) {
             System.err.println(
                     "\nEr is een fout opgetreden tijdens het lezen van het bestand: " + e.getMessage());
@@ -162,11 +171,39 @@ public class OptiesInvoer implements OptieValidatie {
         for (Object o : essentieleOpties) {
             JSONObject optie = (JSONObject) o;
             String categorie = (String) optie.get("categorie");
+            
             if (!behandeldeCategorieen.contains(categorie)) {
-                geselecteerdeOpties
-                        .add(kiesOptie("\nSelecteer een optie uit de categorie '" + categorie.toUpperCase() + "'",
-                                opties.getEssentieleOpties()));
-                behandeldeCategorieen.add(categorie);
+                while (true) {
+                    Opties gekozenOptie = kiesOptie(
+                            "\nSelecteer een optie uit de categorie '" + categorie.toUpperCase() + "'",
+                            opties.getEssentieleOpties());
+
+                    //
+                    boolean gekozenMaaktDeelVanCategorie = false;
+                    for (Object x : essentieleOpties) {
+                        JSONObject y = (JSONObject) x;
+
+                        String yCat = (String) y.get("categorie");
+                        String yNaam = (String) y.get("naam");
+
+                        if (yCat.equals(categorie)
+                                && gekozenOptie.getNaam().toLowerCase().equals(yNaam.toLowerCase())) {
+                            gekozenMaaktDeelVanCategorie = true;
+                            break;
+                        }
+                    }
+
+                    if (gekozenMaaktDeelVanCategorie) {
+                        geselecteerdeOpties.add(gekozenOptie);
+
+                        behandeldeCategorieen.add(categorie);
+
+                        break;
+                    } else {
+                        System.out.printf("Keuze '%s' maakt geen deel van de categorie '%s'.", gekozenOptie.getNaam().toUpperCase(),
+                                categorie.toUpperCase());
+                    }
+                }
             }
         }
     }
@@ -181,6 +218,7 @@ public class OptiesInvoer implements OptieValidatie {
             JSONArray extraOpties) {
         System.out.println("\nWilt u extra opties kiezen? (Ja/Nee)");
         String keuze = input.nextLine().toLowerCase();
+        
         if (keuze.equals("ja")) {
             for (Object o : extraOpties) {
                 JSONObject optie = (JSONObject) o;
@@ -197,6 +235,7 @@ public class OptiesInvoer implements OptieValidatie {
             String categorie) {
         if (!behandeldeCategorieen.contains(categorie) && vraagExtraOpties(categorie)) {
             boolean meerOpties = true;
+            
             while (meerOpties) {
                 Opties geselecteerdeOptie = kiesOptie(
                         "\nSelecteer een optie uit de categorie '" + categorie.toUpperCase() + "'",
@@ -215,6 +254,7 @@ public class OptiesInvoer implements OptieValidatie {
         System.out.println("\nWilt u opties uit de categorie '" + categorie.toUpperCase() + "' kiezen? (Ja/Nee)");
         while (true) {
             String extraOptiesAntwoord = input.nextLine().toLowerCase();
+            
             if (extraOptiesAntwoord.equals("ja")) {
                 return true;
             } else if (extraOptiesAntwoord.equals("nee")) {
@@ -232,6 +272,7 @@ public class OptiesInvoer implements OptieValidatie {
                 "\nWilt u meer opties uit deze categorie (" + categorie.toUpperCase() + ") kiezen? (Ja/Nee)");
         while (true) {
             String meerOptiesAntwoord = input.nextLine().toLowerCase();
+            
             if (meerOptiesAntwoord.equals("ja")) {
                 return true;
             } else if (meerOptiesAntwoord.equals("nee")) {
@@ -328,5 +369,4 @@ public class OptiesInvoer implements OptieValidatie {
         }
         return validKorting;
     }
-
 }
