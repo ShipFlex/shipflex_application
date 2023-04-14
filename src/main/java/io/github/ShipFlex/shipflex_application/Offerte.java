@@ -38,7 +38,7 @@ public class Offerte {
     }
 
     // methode die alle gegevens returned als String
-    private String getTotaleGegevens() {
+    public String getTotaleGegevens() {
         String totaleGegevens = getBedrijfsGegevens() +
                 "\n" + "==== Klantgegevens ====" + "\n" + klant.getNaam() + "\n" +
                 klant.getAdres() + "\n" +
