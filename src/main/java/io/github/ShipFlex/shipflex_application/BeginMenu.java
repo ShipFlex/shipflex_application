@@ -240,10 +240,8 @@ public class BeginMenu {
 
     public void toonKlanttyppes(){
 
-        System.out.println("Dit zijn de huideige klantypes: ");
-        System.out.println("1. Particulier " + "\n"
-        + "2. Bedrijf " + "\n" + 
-        "3. Overige klanttypes die u zelf in kunt stellen");
+        System.out.println("1. Particulier \n2. Bedrijf \n3. Overige klanttypes die u zelf in kunt stellen");
+        System.out.println("");
 
     }
 }
