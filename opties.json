@@ -98,11 +98,6 @@
             "prijs": 60000
         },
         {
-            "categorie": "Stoelen",
-            "naam": "Memory seats",
-            "prijs": 50000
-        },
-        {
             "categorie": "Navigatie",
             "naam": "Radar",
             "prijs": 2000.0
