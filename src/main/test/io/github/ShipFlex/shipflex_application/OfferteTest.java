@@ -8,8 +8,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+
 
 public class OfferteTest {
+
+
     //  Deze test controleert of de 'berekenTotalePrijs' functie van de Offerte klasse
     //  correct werkt. De test zorgt ervoor dat het programma de totale prijs van de
     //  geselecteerde opties correct berekent en retourneert.
@@ -32,10 +38,28 @@ public class OfferteTest {
         assertEquals(300, totalePrijs);
     }
 
-    //hier moeten wij controleren of de offerte correct wordt afgedrukt
-    //heb hier beetje hulp nodig
-
-//    @Test
-//    public void testPrintOfferte(){}
-
+    @Test
+    // Deze methode verifieerd of de 'getTotaleGegevens()' methode de totale gegevens correct returned
+    public void testGetTotaleGegevens() {
+        Klant klant = new Klant("Mr Bean", "Main Street 321", "0101 AZ", "London", "Engeland",
+                                "mrbean@gmail.com", "0611111111", "555 1234");
+        OptiesInvoer optiesInvoer = new OptiesInvoer();
+        Offerte offerte = new Offerte(klant, optiesInvoer);
+        String expected = "==== Bedrijfsgegevens ====\n" +
+                          "MyCompany \n" +
+                          "Voorbeeldstraat 3 \n" +
+                          "0101AB \nDen Haag \n" +
+                          "MyCompany.org0102 0304 \n" +
+                          "\n" +
+                          "==== Klantgegevens ====\n" +
+                          "Mr Bean\n" +
+                          "Main Street 321\n" +
+                          "0101 AZ\n" +
+                          "London\n" +
+                          "Engeland\n" +
+                          "mrbean@gmail.com\n" +
+                          "0611111111" + klant.getExtraDetails();
+        assertEquals(expected, offerte.getTotaleGegevens());
+    }    
 }
+
