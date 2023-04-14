@@ -193,7 +193,7 @@ public class BeginMenu {
         System.out.println("");
 
         // vraagt de gebruiker of de offerte extern geschreven moet worden
-        System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
+        System.out.println("Wilt u de offerte opslaan in een tekstbestand? (Ja/Nee)");
         String invoerString = invoer.nextLine();
         boolean printToFile = invoerString.equalsIgnoreCase("ja");
 
