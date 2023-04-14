@@ -3,12 +3,8 @@ package main.java.io.github.ShipFlex.shipflex_application;
 
 // Imports
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-
-class Main {
+public class Main {
     public static void main(String args[]) throws IOException {
         BeginMenu beginMenu = new BeginMenu();
         beginMenu.start();
