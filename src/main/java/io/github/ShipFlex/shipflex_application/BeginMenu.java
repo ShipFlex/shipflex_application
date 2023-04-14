@@ -214,6 +214,11 @@ public class BeginMenu {
         String invoerString = invoer.nextLine();
         boolean printToFile = invoerString.equalsIgnoreCase("ja");
 
+        if ((!invoerString.equalsIgnoreCase("ja") ) || (!invoerString.equalsIgnoreCase("nee")))  {
+            System.out.println("Ongeldige invoer, probeer opnieuw!");
+             invoerString = invoer.nextLine();
+             }
+
         if (printToFile) {
             System.out.println("Geef een bestandsnaam op voor de offerte:");
             String bestandsnaam = invoer.nextLine();
@@ -229,5 +234,14 @@ public class BeginMenu {
             Offerte of = new Offerte(klant, oi);
             of.printOfferte(false, "");
         }
+    }
+
+    public void toonKlanttyppes(){
+
+        System.out.println("Dit zijn de huideige klantypes: ");
+        System.out.println("1. Particulier " + "/n"
+        + "2. Bedrijf " + "/n" + 
+        "3. Overige klanttypes die u zelf in kunt stellen");
+
     }
 }
