@@ -71,11 +71,11 @@ public class KlantInvoerTest {
     @Test
     public void testGetKlantGegevensParticulier() {
         KlantInvoer klantInvoer = new KlantInvoer(new Scanner(
-            "1\nmr Bean\nMain Street 321\n0101 AZ\nLondon\nEngeland\nmrbean@gmail.com\n0601010101\n12345\n"));
+            "1\nMr Bean\nMain Street 321\n0101 AZ\nLondon\nEngeland\nmrbean@gmail.com\n0601010101\n12345\n"));
 
         Klant klant = klantInvoer.getKlantGegevens();
-        assertTrue(klant.getClass().equals(Particulier.class));
-        assertEquals("mr Bean", klant.getNaam());
+        assertEquals(Particulier.class, klant.getClass());
+        assertEquals("Mr Bean", klant.getNaam());
         assertEquals("Main Street 321", klant.getAdres());
         assertEquals("0101 AZ", klant.getPostcode());
         assertEquals("London", klant.getPlaats());
@@ -95,11 +95,11 @@ public class KlantInvoerTest {
     @Test
     public void testGetKlantGegevensBedrijf() {
         KlantInvoer ki = new KlantInvoer(new Scanner(
-                "2\nmr Bean\nMain Street 321\n0101 AZ\nLondon\nEngeland\n0601010102\nmrbean@gmail.com\n12345\n"));
+                "2\nMr Bean\nMain Street 321\n0101 AZ\nLondon\nEngeland\n0601010102\nmrbean@gmail.com\n12345\n"));
 
         Klant klant = ki.getKlantGegevens();
-        assertTrue(klant.getClass().equals(Bedrijf.class));
-        assertEquals("mr Bean", klant.getNaam());
+        assertEquals(Bedrijf.class, klant.getClass());
+        assertEquals("Mr Bean", klant.getNaam());
         assertEquals("Main Street 321", klant.getAdres());
         assertEquals("0101 AZ", klant.getPostcode());
         assertEquals("London", klant.getPlaats());
