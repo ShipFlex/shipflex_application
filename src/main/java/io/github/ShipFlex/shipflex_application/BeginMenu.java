@@ -26,7 +26,7 @@ public class BeginMenu {
             menuOptie = welkomsBericht();
 
             if (menuOptie == 1) {
-                // Implementeer hier de methode om klanttypes weer te geven
+                toonKlanttyppes();
             }
 
             if (menuOptie == 2) {
@@ -38,6 +38,8 @@ public class BeginMenu {
             }
 
         } while (menuOptie != 4);
+
+       
     }
 
     public int welkomsBericht() {
