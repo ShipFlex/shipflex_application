@@ -73,7 +73,7 @@ public class KlantInvoer {
             System.out.println("Ongeldige keuze, kies 1, 2 of 3!");
         }
 
-        System.out.println("~~ Invulformulier Klantgegevens ~~\n".toUpperCase());
+        System.out.println("====| Invulformulier Klantgegevens |====\n".toUpperCase());
 
         if (keuze == 1) {
             // Begin vragenlijst Particulier

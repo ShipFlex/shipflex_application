@@ -111,7 +111,7 @@ public class OptiesInvoer implements OptieValidatie {
     // die de extra opties print.
     public void displayEssentieleOpties(Opties opties) {
         System.out.println("=====================================");
-        System.out.println("~~ ESSENTIËLE OPTIES ~~");
+        System.out.println("--- ESSENTIËLE OPTIES ---");
         Map<String, List<Opties>> essentieleOpties = opties.getEssentieleOpties();
         for (String categorie : essentieleOpties.keySet()) {
             System.out.println("\n|" + categorie + "|");
@@ -124,7 +124,7 @@ public class OptiesInvoer implements OptieValidatie {
     }
 
     public void displayExtraOpties(Opties opties) {
-        System.out.println("\n~~ EXTRA OPTIES ~~");
+        System.out.println("\n--- EXTRA OPTIES ---");
 
         Map<String, List<Opties>> extraOpties = opties.getExtraOpties();
         for (String categorie : extraOpties.keySet()) {

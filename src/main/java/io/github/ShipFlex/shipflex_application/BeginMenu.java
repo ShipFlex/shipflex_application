@@ -43,10 +43,10 @@ public class BeginMenu {
     public int welkomsBericht() {
         int optie;
         while (true) {
-            System.out.println("Welkom bij de OfferteGenerator van ShipFlex");
-            System.out.println("Selecteer hieronder wat u wilt doen:");
+            System.out.println("====| Welkom bij de OfferteGenerator van ShipFlex |====");
+            System.out.println("\nSelecteer hieronder wat u wilt doen:");
             System.out.println(
-                    "1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
+                    "--------------\n1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
 
             String invoerString = invoer.nextLine();
             try {
@@ -112,7 +112,7 @@ public class BeginMenu {
     }
 
     private int toonCategorieMenu() {
-        System.out.println("Kies een categorie:");
+        System.out.println("\nKies een categorie:\n--------------");
         System.out.println("1. Scheepstype");
         System.out.println("2. Romp");
         System.out.println("3. Stuurinrichting");
@@ -128,7 +128,7 @@ public class BeginMenu {
 
     private int toonActieMenu() {
         System.out.println();
-        System.out.println("Selecteer wat u wilt doen:");
+        System.out.println("\nSelecteer wat u wilt doen:");
         System.out.println("1. Terug naar hoofdmenu");
         System.out.println("2. Opnieuw categorie kiezen om verder informatie te lezen");
 
