@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,25 +61,19 @@ public class Offerte {
         return totalePrijs;
     }
 
-    public void printOfferte(boolean printToFile) throws IOException {
+    public void printOfferte(boolean printToFile, String filename) throws IOException {
         try {
             // print naar console
             PrintWriter writer;
 
             if (printToFile) {
-                writer = new PrintWriter(new FileWriter("offerte.txt"));
-            // } else {
-            //     writer = new PrintWriter(new OutputStreamWriter(System.out));
-            // }
+                writer = new PrintWriter(filename + "_" + LocalDate.now() + ".txt");
+                
+                printOfferte(writer);
 
-            printOfferte(writer);
-
-            // flush en sluit de writer
-            writer.flush();
-            writer.close();
-            
+                writer.close();
+                System.out.println("De offerte is opgeslagen in " + filename + "_" + LocalDate.now() + ".txt\n");
             }
-
         } catch (IOException e) {
             System.err.println("Fout bij het afdrukken van offerte: " + e.getMessage());
             throw e;

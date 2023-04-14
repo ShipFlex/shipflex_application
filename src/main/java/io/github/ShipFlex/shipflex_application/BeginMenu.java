@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,6 +17,7 @@ public class BeginMenu {
     public BeginMenu() {
         this.invoer = new Scanner(System.in);
     }
+
     public void start() throws IOException {
         int menuOptie;
         do {
@@ -29,39 +32,19 @@ public class BeginMenu {
             }
 
             if (menuOptie == 3) {
-                KlantInvoer klantInvoer = new KlantInvoer();
-                Klant klant = klantInvoer.getKlantGegevens();
-
-                OptiesInvoer oi = new OptiesInvoer();
-                Opties op = oi.getOpties();
-
-                oi.displayEssentieleOpties(op);
-                oi.optiesJSON(op);
-
-                System.out.println("");
-
-                // vraagt de gebruiker of de offerte extern geschreven moet worden
-                System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
-                String invoerString = invoer.nextLine();
-                boolean printToFile = invoerString.equalsIgnoreCase("ja");
-
-                Offerte of = new Offerte(klant, oi);
-                of.printOfferte(printToFile);
-
-                // print to console
-                of.printOfferte(false);
+                genereerOfferte();
             }
 
         } while (menuOptie != 4);
     }
-
 
     public int welkomsBericht() {
         int optie;
         while (true) {
             System.out.println("Welkom bij de OfferteGenerator van ShipFlex");
             System.out.println("Selecteer hieronder wat u wilt doen:");
-            System.out.println("1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
+            System.out.println(
+                    "1. Klanttypes inzien\n2. Uitgebreide optielijst weergeven\n3. Offerte genereren\n4. Afsluiten");
 
             String invoerString = invoer.nextLine();
             try {
@@ -79,7 +62,6 @@ public class BeginMenu {
         }
         return optie;
     }
-
 
     private int valideerCategorieKeuze() {
         int gekozenCategorie = 0;
@@ -164,9 +146,8 @@ public class BeginMenu {
         }
     }
 
-
     private void toonOptiesPerCategorie(JSONArray optiesArray, int categorieIndex) {
-        String[] categorieen = {"Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie"};
+        String[] categorieen = { "Scheepstype", "Romp", "Stuurinrichting", "Motortype", "Stoelen", "Navigatie" };
         String gekozenCategorieNaam = categorieen[categorieIndex - 1];
 
         for (int i = 0; i < optiesArray.length(); i++) {
@@ -186,7 +167,6 @@ public class BeginMenu {
         }
     }
 
-
     private String leesBestand() {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader("wiki.json"))) {
@@ -194,9 +174,43 @@ public class BeginMenu {
             while ((regel = br.readLine()) != null) {
                 sb.append(regel);
             }
-        } catch (IOException e ) {
+        } catch (IOException e) {
 
         }
         return sb.toString();
+    }
+
+    private void genereerOfferte() throws IOException {
+        KlantInvoer klantInvoer = new KlantInvoer();
+        Klant klant = klantInvoer.getKlantGegevens();
+
+        OptiesInvoer oi = new OptiesInvoer();
+        Opties op = oi.getOpties();
+
+        oi.displayEssentieleOpties(op);
+        oi.optiesJSON(op);
+
+        System.out.println("");
+
+        // vraagt de gebruiker of de offerte extern geschreven moet worden
+        System.out.println("Wilt u de offerte opslaan in een tekstbestand? (ja/nee)");
+        String invoerString = invoer.nextLine();
+        boolean printToFile = invoerString.equalsIgnoreCase("ja");
+
+        if (printToFile) {
+            System.out.println("Geef een bestandsnaam op voor de offerte:");
+            String bestandsnaam = invoer.nextLine();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime nu = LocalDateTime.now();
+            String datum = dtf.format(nu);
+            String folder = "offertes\\";
+            String filename = folder + bestandsnaam + "-" + datum + ".txt";
+            Offerte of = new Offerte(klant, oi);
+            of.printOfferte(printToFile, filename);
+
+        } else {
+            Offerte of = new Offerte(klant, oi);
+            of.printOfferte(false, "");
+        }
     }
 }
