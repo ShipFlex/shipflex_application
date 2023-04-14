@@ -93,11 +93,6 @@
             "prijs": 50000
         },
         {
-            "categorie": "Stoelen",
-            "naam": "Ventilated seats",
-            "prijs": 60000
-        },
-        {
             "categorie": "Navigatie",
             "naam": "Radar",
             "prijs": 2000.0
@@ -141,36 +136,6 @@
             "categorie": "Veiligheid",
             "naam": "Life raft",
             "prijs": 5000
-        },
-        {
-            "categorie": "Veiligheid",
-            "naam": "Boat alarm",
-            "prijs": 3000
-        },
-        {
-            "categorie": "Veiligheid",
-            "naam": "Life raft",
-            "prijs": 5000
-        },
-        {
-            "categorie": "Navigatie",
-            "naam": "Radar",
-            "prijs": 2000.0
-        },
-        {
-            "categorie": "Navigatie",
-            "naam": "Satellite radio",
-            "prijs": 1500.0
-        },
-        {
-            "categorie": "Comfort",
-            "naam": "Generator",
-            "prijs": 10000
-        },
-        {
-            "categorie": "Comfort",
-            "naam": "Washing machine",
-            "prijs": 8000
         }
     ]
 }
